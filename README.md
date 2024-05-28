@@ -1,3 +1,4 @@
 # Tutorials
-Hope this helps. \n
+Hope this helps.
+
 If not, sorry.
