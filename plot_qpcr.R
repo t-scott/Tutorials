@@ -23,6 +23,7 @@ option_list = list(
     make_option(c("-o", "--outpath"), type="character", default="/data/hodges_lab/", help="dir path for output files"),
     make_option(c("-n", "--name"), type="character", default="qPCR_plot.pdf", help="name for plot and df"),
     make_option(c("-r", "--remove"), type="character", default="default_match_string", help="target name to remove (singular)"),
+    make_option(c("-g", "--housekeepinggene"), type="character", default="GAPDH", help="housekeeping gene used"),
     make_option(c("-l", "--labelsize"), type="integer", default=12, help="size for label text"),
     make_option(c("-a", "--axislabelsize"), type="integer", default=10, help="size for axis label text"),
     make_option(c("-w", "--figurewidth"), type="integer", default=10, help="figure width"),
@@ -53,7 +54,7 @@ ddCT <- df %>%
     select(Sample, Target, CqMean) %>% # Simplify table, we only really need these and can collapse reps
     unique() %>% # reduce, since there's three copies of the Cq mean
     group_by(Sample) %>% # Per sample group...
-    mutate(dCT = CqMean-CqMean[Target=="GAPDH"]) %>% # calc dCT
+    mutate(dCT = CqMean-CqMean[Target==opt$housekeepinggene]) %>% # calc dCT
     ungroup() %>% group_by(Target) %>% # sets it up to calculate ddCT across targets
     mutate(ddCT = dCT-dCT[Sample=="GM12878"]) %>% # calc ddCT
     mutate(foldchange = 2^-(ddCT)) # calc fold change
