@@ -59,8 +59,8 @@ ddCT <- df %>%
     mutate(foldchange = 2^-(ddCT)) # calc fold change
 
 # Save the ddCT dataframe under same name
-write_delim(ddCT, paste0(opt$out, opt$name, ".ddCT_table.txt"), delim="\t", col_names=TRUE, quote="none")
-print(paste0("-----ddCT table output saved at: ", opt$out, opt$name, ".ddCT_table.txt"))
+write_delim(ddCT, paste0(opt$outpath, opt$name, ".ddCT_table.txt"), delim="\t", col_names=TRUE, quote="none")
+print(paste0("-----ddCT table output saved at: ", opt$outpath, opt$name, ".ddCT_table.txt"))
 
 
 ### Plotting
@@ -81,8 +81,8 @@ p <- ddCT %>%
     )
 
 # Save the plot
-ggsave(filename = paste0(opt$out, opt$name, ".ddCT_plot.pdf"), p, width = opt$figurewidth, height = opt$figureheight, dpi = 150)
-print(paste0("-----ddCT plot output saved at: ", opt$out, opt$name, ".ddCT_plot.pdf"))
+ggsave(filename = paste0(opt$outpath, opt$name, ".ddCT_plot.pdf"), p, width = opt$figurewidth, height = opt$figureheight, dpi = 150)
+print(paste0("-----ddCT plot output saved at: ", opt$outpath, opt$name, ".ddCT_plot.pdf"))
 
 # TS
 # plot_qpcr.R
