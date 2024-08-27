@@ -1,0 +1,32 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~ Default jupyter notebook code ~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Make env
+conda create -n jupyter python=3.10.9
+# Activate env
+source activate jupyter_brent
+# Upgrade pip
+python -m pip install --upgrade pip
+
+
+# Install packages
+conda install ipykernel
+conda install numpy
+conda install scipy
+conda install numpy
+conda install matplotlib
+conda install pandas
+conda install scikit-learn
+conda install anaconda::python-hdfs
+conda install bash_kernel
+
+
+# Activate kernel for notebook - so it shows up in the list as display-name
+python -m ipykernel install --user --name jupyter_brent --display-name "Python (Brent)"
+# Install R kernel 
+conda install -c r r-irkernel
+cd /data/hodges_lab/Tim/.conda/envs/jupyter_brent/lib/R/bin
+# Activate kernel
+R -e "IRkernel::installspec()"
+# ./R
+# IRkernel::installspec()
+# q()
