@@ -18,7 +18,7 @@ conda install pandas
 conda install scikit-learn
 conda install anaconda::python-hdfs
 conda install bash_kernel
-
+conda install -c conda-forge jupyter_contrib_nbextensions   
 
 # Activate kernel for notebook - so it shows up in the list as display-name
 python -m ipykernel install --user --name jupyter_py3109 --display-name "Python (3.10.9)"
