@@ -13,7 +13,7 @@ TL;DR:
 
            conda list -n my_env_name
 
-           If it's clear, you're good to go
+  If it's clear, you're good to go
 
 Main issue:
 - Anaconda, miniconda, etc. remain free to use
