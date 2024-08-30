@@ -1,6 +1,24 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~ Default jupyter notebook code ~~~~~~~~~~~~~~~~~~~~~~~~
 # The .yml for this should be in /Tutorials/ymls/
 
+# !!!!!!!!!!!!!!!!!!!              WARNING              !!!!!!!!!!!!!!!!!!!
+#
+#
+# Post-conda commercialization, only conda-forge and bioconda remain free
+#
+# You can see what channels you have currently set in your condarc (like a .bashrc but for conda) with the command:
+#      conda config --show channels
+#
+# To avoid using the default channel by mistake, you can run the following code:
+#      conda config --remove channels defaults
+#
+# You can also manually look at your config file and even edit it like a bash config file. 
+# It should be located by default in your home folder: ~/.condarc
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
 # Make env
 conda create -n jnb3109 python=3.10.9
 # Activate env
