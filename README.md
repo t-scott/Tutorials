@@ -24,15 +24,7 @@ Don't use defaults
 You can check what channels/repos your conda is set to look through when installing software, using "conda config --show channels"
 Remove defaults from this list using "conda config --remove channels defaults"
 For stubborn environments, you can also manually edit this .condarc file like a .bashrc (probably at the location: ~/.condarc) and remove it that way
-# You can see what channels you have currently set in your condarc (like a .bashrc but for conda) with the command:
-#      conda config --show channels
-#
-# To avoid using the default channel by mistake, you can run the following code:
-#      conda config --remove channels defaults
-#
-# You can also manually look at your config file and even edit it like a bash config file. 
-# It should be located by default in your home folder: ~/.condarc
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 Practical solution for current environments:
 Check if your current favorite environments even violate the updated Anaconda Terms of Service. Check if your environment has any packages not from conda-forge or bioconda by using:
