@@ -1,4 +1,5 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~ Default jupyter notebook code ~~~~~~~~~~~~~~~~~~~~~~~~
+# The .yml for this should be in /Tutorials/ymls/
 
 # Make env
 conda create -n jnb3109 python=3.10.9
@@ -18,7 +19,15 @@ conda install pandas
 conda install scikit-learn
 conda install anaconda::python-hdfs
 conda install bash_kernel
+# NB extensions (useful for Table of Contents (2) is currently unavailable for notebook v.7)
+# Solution currently (Aug 30, 2024): Downgrade through uninstall and redownload
+conda uninstall notebook # will also uninstall lots of dependencies
+conda install notebook==6.5.5
+# This won't work if you download everything above as is 
 conda install -c conda-forge jupyter_contrib_nbextensions   
+
+
+
 
 # Activate kernel for notebook - so it shows up in the list as display-name
 python -m ipykernel install --user --name jupyter_py3109 --display-name "Python (3.10.9)"
