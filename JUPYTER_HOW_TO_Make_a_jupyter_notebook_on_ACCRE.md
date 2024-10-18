@@ -24,7 +24,7 @@
     > conda config --remove channels defaults
   
 -  You can also manually look at your config file and even edit it like a bash config file. 
-  - It should be located by default in your home folder: ~/.condarc
+  * It should be located by default in your home folder: ~/.condarc
 
 
 
