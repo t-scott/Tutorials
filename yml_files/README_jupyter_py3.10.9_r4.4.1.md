@@ -14,7 +14,7 @@ The name in the first line of the yml file will determine the name of the conda 
     # Now that it's loaded, you can save this as an Lmod collection
     > module save [NAME_OF_MODULE] # I named mine: module save conda31
     # You can now load this in using:
-    > module restore [NAME_OF_MODULE] # e.g. module restore conda31'''
+    > module restore [NAME_OF_MODULE] # e.g. module restore conda31
 
 ## Creating your conda environment from the yml file 
 - To do this part, you only need a simple command:
@@ -27,4 +27,8 @@ The name in the first line of the yml file will determine the name of the conda 
 - Click "Interactive Apps" > "Jupyter Notebook" (first option)
 - Set your hours, memory, and CPUs
 - **[!!!] Click the box for "virtual environment"**
-`TEST BACKTICKS`
+  - Here is where you should enter the conda environment name (e.g. "/data/hodges_lab/Tim/.conda/envs/jupyter_py3.10.9_r4.4.1")
+- Click the box that says "Use Custom Module Collection" if you created an Lmod collection (e.g. "conda31)
+  - Otherwise, select a "Python version" above (e.g. "Python 3.10.9 / Anaconda 2023.03")
+    - Note: this should correlate with the conda version you used to make the conda environment (in my case "Python 3.10.9 / Anaconda 2023.03" matches back to "module load Anaconda3/2023.03-1)
+- Click **"Launch"** at the bottom and wait for your job to start! This is like submitting a .slrm job, so it can take a minute or two (or three or more if ACCRE is having a bad day)
