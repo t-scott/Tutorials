@@ -8,7 +8,8 @@ The name in the first line of the yml file will determine the name of the conda 
       > module load Anaconda3/2023.03-1
       - This one is the most stable, up to date version currently as of Oct 2024, so subject to change
 - [!!!] Alternatively, if you don't want to remember that whole sequence of numbers, you can make an Lmod "environment"/collection that saves this (i.e Anaconda3/2023.03-1) similar to a conda env, and you can then load it with an easy-to-remember name
-''' Load in the module as above
+####
+    # Load in the module as above
     > module load Anaconda3/2023.03-1
     # Now that it's loaded, you can save this as an Lmod collection
     > module save [NAME_OF_MODULE] # I named mine: module save conda31
