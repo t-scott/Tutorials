@@ -1,7 +1,7 @@
 # ~ Default jupyter notebook code ~
 - The .yml for this should be in /Tutorials/ymls/
 
-# !!!!!           EASY ENV            !!!!
+# !!!!!      Easy env option     !!!!
 - Instead of proceeding through these steps, you can make the same environment from the .yml file here:
   - https://github.com/t-scott/Tutorials/blob/main/yml_files/jupyter_py3.10.9_r4.4.1.yml
     or, on ACCRE at: 
@@ -14,18 +14,17 @@
 
 
 
-# !!!!!!!!!!!!!!!!!              NOTES              !!!!!!!!!!!!!!!!!!!!
-# Post-conda commercialization, only conda-forge and bioconda remain free (not the "defaults" channel)
-#
-# You can see what channels you have currently set in your condarc (like a .bashrc but for conda) with the command:
-#      conda config --show channels
-#
-# To avoid using the default channel by mistake, you can run the following code:
-#      conda config --remove channels defaults
-#
-# You can also manually look at your config file and even edit it like a bash config file. 
-# It should be located by default in your home folder: ~/.condarc
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!      NOTES     !!!!
+- **Post-conda commercialization, only conda-forge and bioconda remain free (not the "defaults" channel)**
+
+- You can see what channels you have currently set in your condarc (like a .bashrc but for conda) with the command:
+    > conda config --show channels
+
+- To avoid using the default channel by mistake, you can run the following code:
+    > conda config --remove channels defaults
+  
+-  You can also manually look at your config file and even edit it like a bash config file. 
+  - It should be located by default in your home folder: ~/.condarc=
 
 
 
