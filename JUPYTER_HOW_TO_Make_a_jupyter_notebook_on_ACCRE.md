@@ -23,8 +23,8 @@
 - To avoid using the default channel by mistake, you can run the following code:
     > conda config --remove channels defaults
   
--  You can also manually look at your config file and even edit it like a bash config file. 
-  * It should be located by default in your home folder: ~/.condarc
+-  You can also manually look at your config file and even edit it like a bash config file.
+    -  It should be located by default in your home folder: ~/.condarc
 
 
 
