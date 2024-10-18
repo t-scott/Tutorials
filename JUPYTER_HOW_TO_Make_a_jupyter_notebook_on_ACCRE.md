@@ -57,13 +57,15 @@ conda install -c conda-forge jupyter_contrib_nbextensions
 ```
 
 
+# Install/Activate kernels
+## Activate kernel for notebook - so it shows up in the list as display-name
+So, now you have an environment. Here, we need to link the python kernel to your environment so if you go into a Jupyter Notebook on ACCRE, it will allow you to see a python kernel to use
+##
+    > python -m ipykernel install --user --name jupyter_py3109 --display-name "Python (3.10.9)"
 
-# Activate kernel for notebook - so it shows up in the list as display-name
-python -m ipykernel install --user --name jupyter_py3109 --display-name "Python (3.10.9)"
-
-# Install R kernel 
-conda install r-irkernel
-cd /data/hodges_lab/Tim/.conda/envs/jnb3109/lib/R/bin
+## Install R kernel 
+    > conda install r-irkernel
+    > cd /data/hodges_lab/Tim/.conda/envs/jnb3109/lib/R/bin
 # Activate kernel
 R -e "IRkernel::installspec()"
 # ./R --> IRkernel::installspec() --> q()
