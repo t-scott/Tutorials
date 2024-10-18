@@ -7,7 +7,7 @@ The name in the first line of the yml file will determine the name of the conda 
   - On ACCRE, you can load in a conda environment through LMod, by using:
       > module load Anaconda3/2023.03-1
       - This one is the most stable, up to date version currently as of Oct 2024, so subject to change
-  - [!!!] Alternatively, if you don't want to remember that whole sequence of numbers, you can make an Lmod "environment"/collection that saves this similar to a conda env, and you can then load it with an easy to remember name
+### [!!!] Alternatively, if you don't want to remember that whole sequence of numbers, you can make an Lmod "environment"/collection that saves this similar to a conda env, and you can then load it with an easy to remember name
       # Load in the module as above
       > module load Anaconda3/2023.03-1
       # Now that it's loaded, you can save this as an Lmod collection
