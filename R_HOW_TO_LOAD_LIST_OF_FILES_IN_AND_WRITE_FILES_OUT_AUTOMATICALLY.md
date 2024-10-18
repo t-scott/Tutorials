@@ -5,10 +5,11 @@
 > lof <- list.files()
 - The goal here is to be able to iterate over all names with a function
     - Alternatively, you could load all files into a list using 
-        > list.files()
+        > lofnames <- list.files()
         > 
-        > map(read_tsv, lof)
+        > lof <- map(read_tsv, lofnames)
         - rename list with names from list.files()
+        > names(lof) <- lofnames
         - but this can also be annoying to work with
 
 ## Write a function
@@ -40,5 +41,5 @@
     ggsave(p, out_file, dpi = 150)
     }
 
-### Map the function across the list of files!
+## Map the function across the list of files!
 map(lof, do_something, "/path/to/files/", "/path/to/output/")
