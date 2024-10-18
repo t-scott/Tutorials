@@ -5,8 +5,10 @@
 > lof <- list.files()
 - The goal here is to be able to iterate over all names with a function
     - Alternatively, you could load all files into a list using 
-        > list.files() --> map(read_tsv, lof) --> rename list with names from list.files()
-          - # but this can also be annoying to work with
+        > list.files()
+        > map(read_tsv, lof)
+            - rename list with names from list.files()
+            - # but this can also be annoying to work with
 
 ## Write a function
 - The idea here is to write a function that only needs the directory of files to read, and the directory to output
