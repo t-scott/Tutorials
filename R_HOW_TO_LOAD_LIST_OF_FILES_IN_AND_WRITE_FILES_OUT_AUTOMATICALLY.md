@@ -8,8 +8,13 @@
         > list.files() --> map(read_tsv, lof) --> rename list with names from list.files()
           - # but this can also be annoying to work with
 
-### Write a function
-#       It needs to load in a file based on the filename
+## Write a function
+- The idea here is to write a function that only needs the directory of files to read, and the directory to output
+      - It needs to load in a file based on the filename, so ideally the filenames follow a pattern, e.g.
+              - IDNAME1.some_output_file.txt
+              - IDNAME2.some_output_file.txt
+              - IDNAME3.some_output_file.txt
+### Example function:
 do_something <- function(fname, dir_in, dir_out){
     # You could also just initialize a dir as a variable
     # file_dir <- "/data/path/to/files/"
