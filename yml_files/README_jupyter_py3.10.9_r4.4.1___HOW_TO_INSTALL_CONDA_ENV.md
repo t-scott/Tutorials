@@ -32,3 +32,8 @@ The name in the first line of the yml file will determine the name of the conda 
   - Otherwise, select a "Python version" above (e.g. "Python 3.10.9 / Anaconda 2023.03")
     - Note: this should correlate with the conda version you used to make the conda environment (in my case "Python 3.10.9 / Anaconda 2023.03" matches back to "module load Anaconda3/2023.03-1)
 - Click **"Launch"** at the bottom and wait for your job to start! This is like submitting a .slrm job, so it can take a minute or two (or three or more if ACCRE is having a bad day)
+
+## Enabling nb_extensions (Table of Contents is elite)
+- Once in a notebook (> new > bash/R/python), click "Edit" > "nbextensions_config"
+- From this page, you can click the boxes to allow for "Table of Contents (2)"
+- There are many other options here for your purusal 
