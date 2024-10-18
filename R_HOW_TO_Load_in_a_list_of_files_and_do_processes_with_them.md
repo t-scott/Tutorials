@@ -41,7 +41,7 @@ we can instead write a one-liner with map!
     > lofn_cleaned <- map(lofn, ~gsub(".output.file.txt", "", .))
 ```
 
-## Load the list in and name the items appropriately
+## Load the list in
 Here, we are going to use *map()* again to read in the list of files, based on the list of filenames
 - Importantly, map can also take in additional arguments and pass them to the function!
 ```R
@@ -53,6 +53,11 @@ Here, we are going to use *map()* again to read in the list of files, based on t
     > lof <- map(lofn, read_tsv, col_names=c("phecode","snp","adjustment","beta","SE","OR","pvalue","type","n_total","n_cases","n_controls","HWE_p","allele_freq","n_no_snp","note","bonferroni","fdr"), skip = 1)
 ```
 
+## Name the items appropriately with our cleaned list of filenames
+```R
+    > names(lof) <- lofn_cleaned
+    # Easy peasy
+```
 
 
 
