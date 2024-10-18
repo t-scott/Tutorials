@@ -15,7 +15,8 @@
               - IDNAME2.some_output_file.txt
               - IDNAME3.some_output_file.txt
 ### Example function:
-do_something <- function(fname, dir_in, dir_out){
+###
+    do_something <- function(fname, dir_in, dir_out){
     # You could also just initialize a dir as a variable
     # file_dir <- "/data/path/to/files/"
     
@@ -34,7 +35,7 @@ do_something <- function(fname, dir_in, dir_out){
     
     # save
     ggsave(p, out_file, dpi = 150)
-}
+    }
 
 ### Map the function across the list of files!
 map(lof, do_something, "/path/to/files/", "/path/to/output/")
