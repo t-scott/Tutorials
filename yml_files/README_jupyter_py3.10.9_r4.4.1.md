@@ -18,7 +18,7 @@ The name in the first line of the yml file will determine the name of the conda 
 ## Creating your conda environment from the yml file 
 - To do this part, you only need a simple command:
     > conda env create -f environment.yml
-    # Remember, the name of the .yml does not dictate the name of the conda environment you will use when loading it
+    > # Remember, the name of the .yml does not dictate the name of the conda environment you will use when loading it
 - This portion will take a little time. We tested this with Jessica Day on a default ACCRE terminal and it took ~5-10 minutes.
 
 ## Using your conda environment for Jupyter Notebooks:
