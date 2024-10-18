@@ -66,13 +66,15 @@ So, now you have an environment. Here, we need to link the python kernel to your
 ## Install R kernel 
     > conda install r-irkernel
     > cd /data/hodges_lab/Tim/.conda/envs/jnb3109/lib/R/bin
-# Activate kernel
-R -e "IRkernel::installspec()"
-# ./R --> IRkernel::installspec() --> q()
+    > # Activate kernel
+    > R -e "IRkernel::installspec()"
+    > # alternatively, you can open an R session in terminal: ./R --> IRkernel::installspec() --> q()
 
-# R packages
-conda install r-essentials
-conda install r-tidyverse
+# Install R packages
+    > conda install r-essentials
+    > conda install r-tidyverse
+### Tidyverse-associated packages for reference:
+```R
 #  pandoc             conda-forge/linux-64::pandoc-3.3-ha770c72_0 
 #  r-askpass          conda-forge/linux-64::r-askpass-1.2.0-r44hb1dbf0f_1 
 #  r-assertthat       conda-forge/noarch::r-assertthat-0.2.1-r44hc72bb7e_5 
@@ -165,4 +167,4 @@ conda install r-tidyverse
 #  r-xfun             conda-forge/linux-64::r-xfun-0.47-r44h0d4f4ea_0 
 #  r-xml2             conda-forge/linux-64::r-xml2-1.3.6-r44h8194278_2 
 #  r-yaml             conda-forge/linux-64::r-yaml-2.3.10-r44hdb488b9_0 
-
+```
