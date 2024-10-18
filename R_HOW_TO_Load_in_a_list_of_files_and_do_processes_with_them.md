@@ -10,20 +10,23 @@ For this part, we're going to use the function *list.files()*
 
 # Steps for loading a list of files and having the list labeled in a readable manner
 ## Go to the directory of interest
+```R
     > cd("/some/output/directory/")
-
+```
 ## Load in the filenames based on pattern (this uses regex, so the cleaner your directory, the easier)
+```R
     > # I shorthand "list of filenames" to lofn
     > # Here, I'm using the above example and assuming our pattern of files is: REP1.output.file.txt, REP2.output.file.txt, REP3.output.file.txt, ...
     > lofn <- list.files(pattern=".*.output.file.txt")
-
+```
 ## Clean the filenames
 Now you should have a list like: c("REP1.output.file.txt", "REP2.output.file.txt", "REP3.output.file.txt", ...)
 But! Obviously, if we want to name the items of our list of dataframes in the next step, we'd like a cleaner list more like: c("REP1", "REP2", "REP3", ...)
 - For this, we're going to use *gsub()*
   - The syntax for *gsub()* is gsub("pattern", "replacement", string)
   - We're also going to use *map()* to iterate over our list of filenames
-    - *map()* is faster than using a traditional *for loop* and is also, in my opinion, more readable 
+
+- *map()* is faster than using a traditional *for loop* and is also, in my opinion, more readable 
     - The basic syntax here is map(list, function)
     - Importantly, you can write custom lambda functions within map with the help of a tilda (~) 
 
