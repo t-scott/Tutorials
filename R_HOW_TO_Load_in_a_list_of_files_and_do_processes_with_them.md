@@ -59,6 +59,16 @@ Here, we are going to use *map()* again to read in the list of files, based on t
     # Easy peasy
 ```
 
-
-
+## Do stuff to each file
+The idea here is that now you can use map and iterate a process over each file efficiently, as in a for loop
+```R
+> # Define a function
+> some_function <- function(input) {
+    output <- stuff_to_do(input)
+    return(output)
+}
+> # Iterate over files
+> map(lof, some_function)
+```
+Or, this could be a function that already exists, as above with *read_tsv*.
 
