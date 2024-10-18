@@ -28,7 +28,8 @@
 
 
 
-
+# Steps for a default environment
+```bash
 # Make env
 conda create -n jnb3109 python=3.10.9
 # Activate env
@@ -53,7 +54,7 @@ conda uninstall notebook # will also uninstall lots of dependencies
 conda install notebook==6.5.5
 # This won't work if you download everything above as is 
 conda install -c conda-forge jupyter_contrib_nbextensions   
-
+```
 
 
 
