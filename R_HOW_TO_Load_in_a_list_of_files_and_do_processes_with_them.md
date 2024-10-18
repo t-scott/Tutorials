@@ -1,4 +1,4 @@
-# (1) Tell R what files we want to load in: 
+# Basic idea of this: 
 For this part, we're going to use the function *list.files()*
 - The goal here is to get an object that is a list of strings of filenames we'd like to load in.
 - Here, I find it easier to *cd* into the directory of interest first, and then use *list.files()*, or all the file names will include the directory path, and it's just more cumbersome to view as well as clean
