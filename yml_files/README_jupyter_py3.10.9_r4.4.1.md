@@ -1,7 +1,7 @@
-NOTE:
-# CHANGE BEFORE INSTALLING CONDA ENV
+## NOTE: CHANGE BEFORE INSTALLING CONDA ENV
 The name in the first line of the yml file will determine the name of the conda environment. Edit before creating your environment. ("Name: env_name")
 
+# To install a conda environment from a yml
 ## Loading Conda ##
 - To start, you need to be in a conda environment
   - On ACCRE, you can load in a conda environment through LMod, by using:
