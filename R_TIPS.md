@@ -23,7 +23,8 @@ or you can calculate a new column from other columns with simple syntax. I do th
 ```R
 dataframe %>% mutate(diff_colA_colB = colA - colB)
 ```
-But what if you want to assign categorical labels to your data, where the category assignment depends on the values in some column? That's a perfect use case for *mutate()* + *case_when()*
+
+But what if you wanted to assign a group name based on some value (e.g. if p-value <= 0.05, assign "significant", and if  0.05 < p-value =<, assign "nearing significance", and so on)? Or what if you want to assign categorical labels to your data, where the category assignment depends on the values in some column? That's a perfect use case for *mutate()* + *case_when()*
 
 Here's an example. Let's say you have 10 HMRs, where each HMR has a p-value for each of 5 tests/groups/ontologies/phenotypes/etc. Here's repeatable code to make a practice dataframe: 
 ```R
@@ -35,6 +36,7 @@ df
 ```
 The dataframe looks like this: 
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_mutate_case_when_practice_dataframe.png)
+
 
 We could then make a quick plot to plot all these p-values across the 5 "tests". 
 ```R
@@ -55,6 +57,8 @@ df %>%
         )
 ```
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_mutate_case_when_premutate.png)
+
+
 Neat. But, the coloring doesn't really help the plot. 
 
 What if, each HMR had an associated gene near it. HMR1-3 belong to GENE_1. HMR3-6 belong to GENE_2. And HMR7-10 are assigned to GENE_3. 
@@ -84,8 +88,18 @@ df %>%
         theme_minimal()
 ```
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_mutate_case_when_postmutate.png)
-Better, though I would 100% change the palette. I hope it's clear that the use of *mutate()* + *case_when()* has many use cases and can allow for quick generation of new columns you need in a readable manner. 
-
+Better, though I would 100% change the palette. I hope it's clear that the use of *mutate()* + *case_when()* has many use cases and can allow for quick generation of new columns you need in a readable manner. Also, for the p-value example above, just to show this again, you could do:
+```R
+df %>%
+    mutate(p_val_significance_label = case_when(
+                                        pval <= 0.05 ~ "significant",
+                                        0.05 < pval & pval < 0.2 ~ "nearing significance", 
+                                        pval > 0.2 ~ "not significant"
+                                    )
+           )
+```
+And, the output would look something like: 
+![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_mutate_case_when_pval_example.png)
 
 
 
