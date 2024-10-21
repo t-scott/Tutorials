@@ -13,6 +13,7 @@ This (hopefully) describes how to iterate over a list of files and ggplot them, 
   - The major difference is using map2 (instead of just normal *map*), so we can feed in not only a list of dataframes, but also the list of file names (cleaned) so that it can use two inputs, one for the the ggplot as usual, and the list of names for ggtitles
 
 # R stuff
+The files I use for examples are stored on ACCRE: /data/hodges_lab/Tim/github_tutorials/rep_example_files/
 
 ## Create a list of filenames to load
 ```R
@@ -92,7 +93,7 @@ The idea here is that now you can use map2 and iterate ggplot over each file eff
 > some_ggplot_function <- function(input_df, title) {
     plot_to_save <- input_df %>%
     # mutate(...) # you can also mutate in new columns or calculations or group assignments here (case_when is great)
-    ggplot(aes(x=fake_x_col, y=fake_y_col) +
+    ggplot(aes(x=fake_x_col, y=fake_y_col)) +
       geom_point() +
       ggtitle(title) +
       theme_minimal() + 
@@ -120,6 +121,9 @@ Now we can iterate this function over our list of dataframes and list of cleaned
 > map2(lof, lofn_cleaned, ~some_ggplot_function(input_df = .x, title = .y))
 ```
 
+Here's an example of me running the code above. 
+![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_plotting_function.R_HOW_TO_Graph_a_list_of_files.png)
+![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_plots.R_HOW_TO_Graph_a_list_of_files.png)
 
 
 
