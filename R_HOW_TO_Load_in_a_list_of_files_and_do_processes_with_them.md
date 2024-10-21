@@ -11,7 +11,7 @@ For this part, we're going to use the function *list.files()*
 # Steps for loading a list of files and having the list labeled in a readable manner
 ## Go to the directory of interest
 ```R
-    > cd("/some/output/directory/")
+    > setwd("/some/output/directory/")
 ```
 ## Load in the filenames based on pattern (this uses regex, so the cleaner your directory, the easier)
 ```R
