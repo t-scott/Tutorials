@@ -13,7 +13,7 @@ This (hopefully) describes how to iterate over a list of files and ggplot them, 
 
 ## Create a list of filenames to load
 ```R
-> cd("/some/output/directory/full/of/neat/files")
+> setwd("/some/output/directory/full/of/neat/files")
 > # lofn = list of file names
 > # Here, like the other how-to, I'm assuming our pattern of files is: REP1.output.file.txt, REP2.output.file.txt, REP3.output.file.txt, ...
 > lofn <- list.files(pattern=".*.output.file.txt")
