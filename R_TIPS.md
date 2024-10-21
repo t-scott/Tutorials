@@ -15,6 +15,8 @@ theme(
 # Using *mutate()* + *case_when()* to add columns
 I love the function *mutate()* alongside *case_when()*. I think the combination is powerful. There are many, many use cases for this (I hope you continue finding more!), though I tend to use them in concert with ggplot.
 
+**case_when()** is like an if-else block, but with easier-to-write syntax. Details below.
+
 **mutate()**: The basics for this dplyr function is that you can add a new column. It can be simple, 
 ```R
 dataframe %>% mutate(new_column_id = "new string")
@@ -35,10 +37,11 @@ df <- tibble(pval = abs(rnorm(50, 0.5, .4)),
 df
 ```
 The dataframe looks like this: 
+
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_mutate_case_when_practice_dataframe.png)
 
 
-We could then make a quick plot to plot all these p-values across the 5 "tests". 
+We could then make a quick ggplot call to plot all these p-values across the 5 "tests". 
 ```R
 options(repr.plot.width = 6, repr.plot.height = 5)
 
@@ -61,11 +64,11 @@ df %>%
 
 Neat. But, the coloring doesn't really help the plot. 
 
-What if, each HMR had an associated gene near it. HMR1-3 belong to GENE_1. HMR3-6 belong to GENE_2. And HMR7-10 are assigned to GENE_3. 
+What if, each HMR had an associated gene near it and we colored the data by GENE ID instead. HMR1-3 belong to GENE_1. HMR3-6 belong to GENE_2. And HMR7-10 are assigned to GENE_3. 
 
 We can quickly use *mutate()* + *case_when()* to create a new column to reflect this. 
 
-*case_when()* is like an if-else block, but with easier-to-write syntax. The syntax for case_when() is, at it's simplest:
+Again, *case_when()* is like an if-else block, but with easier-to-write syntax. The syntax for case_when() is, at it's simplest:
 ```R
 case_when(
     condition1 ~ what_to_put_in_the_new_column_1,
