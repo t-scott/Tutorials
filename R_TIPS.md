@@ -27,6 +27,7 @@ But what if you want to assign categorical labels to your data, where the catego
 
 Here's an example. Let's say you have 10 HMRs, where each HMR has a p-value for each of 5 tests/groups/ontologies/phenotypes/etc. Here's repeatable code to make a practice dataframe: 
 ```R
+set.seed(100)
 df <- tibble(pval = abs(rnorm(50, 0.5, .4)),
              test_ID = rep(paste0("TEST", seq(1,5)), 10),
              HMR_ID = rep(paste0(rep("HMR", 10), seq(1, 10)), each=5))
