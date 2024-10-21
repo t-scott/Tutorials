@@ -1,6 +1,9 @@
 # Basic idea:
 This (hopefully) describes how to iterate over a list of files and ggplot them, assuming you want to apply the same ggplot function to each file
 
+**Rule of thumb:**
+- **If you find yourself copying/pasting or rewriting code 3 or more times, loop it.** There's also a good chance you might have to rerun the code, and you don't want to have to edit each individual line if something changes (filename, file location, etc.). 
+
 ## Example usage:  
 - I have a directory of 1000 PheWAS output results that I'd like to plot. And, their rsIDs are part of the output file names: rs12345.output.txt, rs23456.output.txt, rs34567.output.txt, ..., so therefore, I'd also like the outputs to include these names: rs12345, rs23456, rs34567 in the filename of the saved plot.
 
@@ -15,7 +18,7 @@ This (hopefully) describes how to iterate over a list of files and ggplot them, 
 ```R
 > setwd("/some/output/directory/full/of/neat/files")
 > # lofn = list of file names
-> # Here, like the other how-to, I'm assuming our pattern of files is: REP1.output.file.txt, REP2.output.file.txt, REP3.output.file.txt, ...
+> # Here, like the other how-to, I'm assuming our pattern of files is: REP1.output.txt, REP2.output.txt, REP3.output.txt, ...
 > lofn <- list.files(pattern=".*.output.file.txt")
 
 > lofn
@@ -42,7 +45,12 @@ Instead of writing a for loop something like:
 ```
 we can instead write a one-liner with map!
 ```R
-    > lofn_cleaned <- map(lofn, ~gsub(".output.file.txt", "", .))
+> lofn_cleaned <- map(lofn, ~gsub(".output.file.txt", "", .))
+> lofn_cleaned
+> 'REP1'
+  'REP2'
+  'REP3'
+
 ```
 
 ## Load the list in
@@ -55,6 +63,16 @@ Here, we are going to use *map()* to read in the list of files, based on the lis
     > lof <- map(read_tsv, lofn, colnames=TRUE)
     # Here's an example of mine where I'm sending in a few more options
     > lof <- map(lofn, read_tsv, col_names=c("phecode","snp","adjustment","beta","SE","OR","pvalue","type","n_total","n_cases","n_controls","HWE_p","allele_freq","n_no_snp","note","bonferroni","fdr"), skip = 1)
+```
+Now you have a list of dataframes! With read_tsv, you really have tibbles. But, the point is they're the same as if you had loaded them in individually, but just stored in a list structure. 
+```R
+# Slow way
+rep1_df <- read_tsv("/data/hodges_lab/Tim/github_tutorials/rep_example_files/REP1.output.txt", colnames=TRUE)
+rep2_df <- read_tsv("/data/hodges_lab/Tim/github_tutorials/rep_example_files/REP2.output.txt", colnames=TRUE)
+rep3_df <- read_tsv("/data/hodges_lab/Tim/github_tutorials/rep_example_files/REP3.output.txt", colnames=TRUE)
+...
+...
+...
 ```
 
 ## Name the items appropriately with our cleaned list of filenames
