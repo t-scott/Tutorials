@@ -4,13 +4,16 @@
 > setwd("/data/hodges_lab/Tim/data/directory/")
 > lof <- list.files()
 - The goal here is to be able to iterate over all names with a function
-    - Alternatively, you could load all files into a list using 
-        > lofnames <- list.files()
-        > 
-        > lof <- map(read_tsv, lofnames)
-        - rename list with names from list.files()
-        > names(lof) <- lofnames
-        - but this can also be annoying to work with
+    - Alternatively, you could load all files into a list using
+
+```R
+> lofnames <- list.files()
+> 
+> lof <- map(read_tsv, lofnames)
+- rename list with names from list.files()
+> names(lof) <- lofnames
+- but this can also be annoying to work with
+```
 
 ## Write a function
 - The idea here is to write a function that only needs the directory of files to read, and the directory to output
@@ -19,7 +22,8 @@
         - IDNAME2.some_output_file.txt
         - IDNAME3.some_output_file.txt
 ### Example function:
-###
+
+```R
     do_something <- function(fname, dir_in, dir_out){
     # You could also just initialize a dir as a variable
     # file_dir <- "/data/path/to/files/"
@@ -43,3 +47,4 @@
 
 ## Map the function across the list of files!
 map(lof, do_something, "/path/to/files/", "/path/to/output/")
+```
