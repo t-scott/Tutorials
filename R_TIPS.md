@@ -91,6 +91,7 @@ df %>%
         theme_minimal()
 ```
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_mutate_case_when_postmutate.png)
+
 Better, though I would 100% change the palette. I hope it's clear that the use of *mutate()* + *case_when()* has many use cases and can allow for quick generation of new columns you need in a readable manner. Also, for the p-value example above, just to show this again, you could do:
 ```R
 df %>%
@@ -102,6 +103,7 @@ df %>%
            )
 ```
 And, the output would look something like: 
+
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_mutate_case_when_pval_example.png)
 
 
