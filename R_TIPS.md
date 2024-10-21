@@ -99,8 +99,7 @@ df %>%
                                         pval <= 0.05 ~ "significant",
                                         0.05 < pval & pval < 0.2 ~ "nearing significance", 
                                         pval > 0.2 ~ "not significant"
-                                    )
-           )
+           ))
 ```
 And, the output would look something like: 
 
