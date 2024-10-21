@@ -22,6 +22,7 @@ theme(
 
 # MY SET.SEED IS DIFFERENT WHEN USING THE SAME SEED?!
 **Obligatory realted PSA: If you're generating a heatmap, set the seed! You might have to remake it!**
+
 This could be due to a change in the way R generates random numbers. R changed the method between R version 3.5 and version 3.6. The older method is "Rounding" while newer versions use "Rejection". Basically, they found out that the older method isn't perfectly uniform in certain cases, though it works for most general use cases. You can check your method using:
 ```R
 RNGkind()
