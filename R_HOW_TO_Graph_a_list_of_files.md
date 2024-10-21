@@ -121,8 +121,10 @@ Now we can iterate this function over our list of dataframes and list of cleaned
 > map2(lof, lofn_cleaned, ~some_ggplot_function(input_df = .x, title = .y))
 ```
 
-Here's an example of me running the code above. Note how the plots now have their appropriate title label! And how Jupyter Notebook will still print the list names, but it won't necessarily put them in order with the plots, so with many more files, it would otherwise be difficult to immediately tell which plot represented what identifier ("REP1", "REP2", "REP3", etc.). 
+Here's an example of me running the code above. 
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_plotting_function.R_HOW_TO_Graph_a_list_of_files.png)
+
+Note how the plots now have their appropriate title label! And how Jupyter Notebook will still print the list names, but it won't necessarily put them in order with the plots, so with many more files, it would otherwise be difficult to immediately tell which plot represented what identifier ("REP1", "REP2", "REP3", etc.). 
 ![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_plots.R_HOW_TO_Graph_a_list_of_files.png)
 
 
