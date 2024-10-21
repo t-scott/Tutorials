@@ -17,6 +17,10 @@ This (hopefully) describes how to iterate over a list of files and ggplot them, 
 > # lofn = list of file names
 > # Here, like the other how-to, I'm assuming our pattern of files is: REP1.output.file.txt, REP2.output.file.txt, REP3.output.file.txt, ...
 > lofn <- list.files(pattern=".*.output.file.txt")
+
+> lofn
+> 'REP1.output.txt''REP2.output.txt''REP3.output.txt'
+
 ```
 
 ## Clean the filenames
