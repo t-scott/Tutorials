@@ -9,7 +9,7 @@ Sometimes, you might want to wrap the text of labels on an axis because the stri
 Example data is stored on ACCRE at: /data/hodges_lab/Tim/github_tutorials/long_string_example_files
 
 
-Here's an example of code for a plot that might have too long of labels on the y-axis. You could imagine these being ontology strings for a dotplot of top GO hits. 
+## Here's an example of code for a plot that might have too long of labels on the y-axis. You could imagine these being ontology strings for a dotplot of top GO hits. 
 ```R
 # Load libraries
 library(ggplot2)
@@ -28,9 +28,49 @@ df
 |it might be a gene ontology string that is ridiculously long|              4|
 |a very long string of some sort of collection of words|              3|
 
+```R
+# Plot without wrapping text
+options(repr.plot.width = 8, repr.plot.height = 5) 
+
+df %>%
+    ggplot(aes(x=some_value, y=fake_ID)) +
+        geom_point() +
+        theme_minimal() +
+        theme(
+            plot.title = element_text(hjust = 0.5, size = 14), # centers the title
+            axis.title.x = element_text(color = "grey20", size = 14),
+            axis.title.y = element_text(color = "grey20", size = 14),
+            axis.text.x = element_text(color = "grey20", size = 14, angle = 90, hjust = 1), # adjusts x-axis to vertical
+            axis.text.y = element_text(color = "grey20", size = 14),
+            panel.grid.minor.x = element_blank(),
+            panel.grid.minor.y = element_blank()
+        )
+```
+![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_plots_long_text_label.R_TIPS.png)
 
 
 
-And here's an example of the code and resultant plot by using:
+## And here's an example of the code and resultant plot by using:
 **scale_y_discrete(labels = function(x) str_wrap(x, width = 20))**
+```R
+# Plot with text wrapping
+options(repr.plot.width = 6, repr.plot.height = 5) # adjusting to be less wide since text is now wrapped
+
+df %>%
+    ggplot(aes(x=some_value, y=fake_ID)) +
+        geom_point() +
+        theme_minimal() +
+        theme(
+            plot.title = element_text(hjust = 0.5, size = 14), # centers the title
+            axis.title.x = element_text(color = "grey20", size = 14),
+            axis.title.y = element_text(color = "grey20", size = 14),
+            axis.text.x = element_text(color = "grey20", size = 14, angle = 90, hjust = 1), # adjusts x-axis to vertical
+            axis.text.y = element_text(color = "grey20", size = 14),
+            panel.grid.minor.x = element_blank(),
+            panel.grid.minor.y = element_blank()
+        ) +
+        scale_y_discrete(labels = function(x) str_wrap(x, width = 20))
+```
+![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_plots_long_text_label_fixed.R_TIPS.png)
+
 
