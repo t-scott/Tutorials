@@ -64,7 +64,7 @@ Here, we are going to use *map()* to read in the list of files, based on the lis
     # Here's an example of mine where I'm sending in a few more options
     > lof <- map(lofn, read_tsv, col_names=c("phecode","snp","adjustment","beta","SE","OR","pvalue","type","n_total","n_cases","n_controls","HWE_p","allele_freq","n_no_snp","note","bonferroni","fdr"), skip = 1)
 ```
-Now you have a list of dataframes! With read_tsv, you really have tibbles. But, the point is they're the same as if you had loaded them in individually, but just stored in a list structure. 
+Now you have a list of dataframes! With read_tsv, you really have tibbles. But, the point is they're the same as if you had loaded them in individually, but just stored in a list structure. The one-liner is much faster than writing each and every file out: 
 ```R
 # Slow way
 rep1_df <- read_tsv("/data/hodges_lab/Tim/github_tutorials/rep_example_files/REP1.output.txt", colnames=TRUE)
@@ -80,6 +80,9 @@ rep3_df <- read_tsv("/data/hodges_lab/Tim/github_tutorials/rep_example_files/REP
     > names(lof) <- lofn_cleaned
     # Easy peasy
 ```
+It should look something like this: 
+![alt text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_named_list_of_dataframes.png)
+
 
 ## Do stuff to each file
 The idea here is that now you can use map2 and iterate ggplot over each file efficiently, as in a for loop. Importantly, here, we're also sending in the cleaned list of filenames (*lofn_cleaned*) from above, so the ggplot function knows both what dataframe we're plotting as well as the name of the dataframe (i.e. "REP1", "REP2", "REP3", etc.)
