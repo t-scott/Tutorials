@@ -49,9 +49,41 @@ This is useful for looping, especially, as you can then use this to name outputs
 ```bash
 $ for FILE in example_files*
 $ do
-$  FILENAME_cleaned=${FILE%%.*}
-$  # Maybe these are BED files that have extra columns and we only want the first three out
-$  awk 'BEGIN{OFS=FS="\t"}{print $1,$2,$3}' $FILE > /some/output/directory/${FILENAME_cleaned}.cleaned_three_column.bed
+$     FILENAME_cleaned=${FILE%%.*}
+$     # Maybe these are BED files that have extra columns and we only want the first three out
+$     awk 'BEGIN{OFS=FS="\t"}{print $1,$2,$3}' $FILE > /some/output/directory/${FILENAME_cleaned}.cleaned_three_column.bed
 $ done
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+# Consider making yourself some helpful shortcuts for bash
+If you find yourself typing the same thing over and over in the terminal, considering making yourself a shortcut by putting them in your ~/.bashprofile
+
+For example, I have a few such as:
+```bash
+alias mydir="cd /data/hodges_lab/Tim/"
+alias bfdir="cd /scratch/scottt7/Ferrell/"
+alias tim="cd /data/hodges_lab/Tim/"
+```
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+# Consider using Oh-My-Zsh to brighten up your terminal 
+This is a popular program/plug in for ZShell. Mac has moved from a simple bash shell for their default terminal to Zshell, which supports some cooler formatting and much more. I just use OhMyZsh for aesthetic reasons primarily and to view my directory path a little clearer. Essentially, you install it and it creates a file: ~/.zshrc (like a .bashrc) that holds a simple text file that controls a lot of settings. 
+- Main website here: https://ohmyz.sh/
+- There's a large amount of plugins: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+- Good tutorial here for installation: https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156/
+
+
 
