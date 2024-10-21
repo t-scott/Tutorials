@@ -12,6 +12,11 @@ theme(
 )
 ```
 
+<br>
+<br>
+
+
+
 # Using *mutate()* + *case_when()* to add columns
 I love the function *mutate()* alongside *case_when()*. I think the combination is powerful. There are many, many use cases for this (I hope you continue finding more!), though I tend to use them in concert with ggplot.
 
