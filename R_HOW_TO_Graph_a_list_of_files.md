@@ -107,7 +107,7 @@ The idea here is that now you can use map2 and iterate ggplot over each file eff
 }
 ```
 A couple notes here:
-- Note that the *title* being requested is being used twice in the function: once in the *ggtitle()* and again in the *ggsave()* call--this is where the map2 is useful in being able to take in that list of filenames, so now we can just save the plots automatically with informed identifiers ("REP1", "REP2", "REP3", etc. --> "REP1.output_plot.pdf", "REP2.output_plot.pdf", "REP3.output_plot.pdf") without ever having to copy/paste or, worse, explicitly writing them out! This gets increasingly useful with increasing files; this also helps in cases where you have many many files with similar names (e.g. rsIDs, ENSG gene names, etc.) where a copy/paste error could be problematic and hard to track down. 
+- Note that the *title* being requested is being used twice in the function: once in the *ggtitle()* and again in the *ggsave()* call--this is where the map2 is useful in being able to take in that list of filenames, so now we can just save the plots automatically with informed identifiers ("REP1", "REP2", "REP3", etc. --> "REP1.output_plot.pdf", "REP2.output_plot.pdf", "REP3.output_plot.pdf") without ever having to copy/paste or, worse, explicitly writing them out! This gets increasingly useful with increasing amounts of files; this also helps in cases where you have many many files with similar names (e.g. rsIDs, ENSG gene names, etc.) where a copy/paste error could be problematic and hard to track down. 
   - paste0 (as opposed to *paste(..., ..., sep="\t")* combines strings with the assumption that you don't want a separator, so it's good for combining paths and filenames
 
 
