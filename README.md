@@ -12,7 +12,8 @@ A collection of code, scripts, and ymls to hopefully make your bioinformatic lif
 
 # Table of Contents (in progress)
 - BASH_HOW_TO_use_variables_in_awk.md
-  - **WHY:** If you want to use bash variables in your awk command (e.g. putting the filename or another variable in as a column)  
+  - If you want to use bash variables in your awk command (e.g. putting the filename or another variable in as a column)
+<br>
 - BASH_TIPS.md
   - How to clean up bash variables
   - Making shortcuts in ~/.bash_profile
@@ -24,7 +25,7 @@ A collection of code, scripts, and ymls to hopefully make your bioinformatic lif
     - Comes with Rv4.4.1: tidyverse, ggplot2, ggrepel, RColorBrewer, reshape2, scales
     - Comes with Pythonv3.10.9
     - Designed to be a good starting point/general environment for most needs
-  - How to create a new conda environment with just conda-forge and bioconductor
+  - How to create a new conda environment with packages from just conda-forge and bioconductor
 - JUPYTER_TIPS.md
   - How to resize plot outputs in your Notebook
 - R_HOW_TO_Graph_a_list_of_files.md
