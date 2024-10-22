@@ -7,39 +7,39 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 
 # Table of Contents (in progress)
 - BASH_HOW_TO_use_variables_in_awk.md
-  - If you want to use bash variables in your awk command (e.g. putting the filename or another variable in as a column)
+    - If you want to use bash variables in your awk command (e.g. putting the filename or another variable in as a column)
 - BASH_TIPS.md
-  - How to clean up bash variables
-  - Making shortcuts in ~/.bash_profile
-  - Screens
-  - Consider using Oh-My-Zsh
+    - How to clean up bash variables
+    - Making shortcuts in ~/.bash_profile
+    - Screens
+    - Consider using Oh-My-Zsh
 - JUPYTER_HOW_TO_Make_a_Jupyter_Notebook_on_ACCRE.md
-  - Install a default env with Jupyter Notebook on ACCRE via .yml
-    - Allows for Jupyter Notebooks with Python/R/bash kernels
-    - Comes with Rv4.4.1: tidyverse, ggplot2, ggrepel, RColorBrewer, reshape2, scales
-    - Comes with Pythonv3.10.9
-    - Designed to be a good starting point/general environment for most needs
-  - How to create a new conda environment with packages from just conda-forge and bioconductor
+    - Install a default env with Jupyter Notebook on ACCRE via .yml
+      - Allows for Jupyter Notebooks with Python/R/bash kernels
+      - Comes with Rv4.4.1: tidyverse, ggplot2, ggrepel, RColorBrewer, reshape2, scales
+      - Comes with Pythonv3.10.9
+      - Designed to be a good starting point/general environment for most needs
+    - How to create a new conda environment with packages from just conda-forge and bioconductor
 - JUPYTER_TIPS.md
-  - How to resize plot outputs in your Notebook
+    - How to resize plot outputs in your Notebook
 - R_HOW_TO_Graph_a_list_of_files.md
-  - How to load files in from a filename pattern, ggplot them with appropriately named titles, and save them with appropriate outfile names            
+    - How to load files in from a filename pattern, ggplot them with appropriately named titles, and save them with appropriate outfile names            
 - R_HOW_TO_Load_in_a_list_of_files_and_do_processes_with_them.md
-  - More generalized version of loading in a list of files from a filename pattern and applying a function to each file 
+    - More generalized version of loading in a list of files from a filename pattern and applying a function to each file 
 - R_HOW_TO_Load_list_of_files_in_and_write_files_out_automatically.md
-  - More generalized version of iterating a process of a list of dataframes with options for input directory and output directory 
+    - More generalized version of iterating a process of a list of dataframes with options for input directory and output directory 
 - R_HOW_TO_Wrap_ggplot_text_labels.md
-  - How to wrap text if your axis labels are **too wide** 
+    - How to wrap text if your axis labels are **too wide** 
 - R_TIPS.md
-  - My basic starting ggplot *theme()* section
-  - Checking your R random number generator method (re: *set.seed()*)
-  - *mutate()* + *case_when()* to add new columns to a dataframe based on other columns
+    - My basic starting ggplot *theme()* section
+    - Checking your R random number generator method (re: *set.seed()*)
+    - *mutate()* + *case_when()* to add new columns to a dataframe based on other columns
 - USEFUL_LINKS.md
-  - UCSC FTP links (hg19/hg38)
-  - KentUtils links for downloading binaries 
+    - UCSC FTP links (hg19/hg38)
+    - KentUtils links for downloading binaries 
 - plot_qPCR.R_script_with_options.R
-  - a script I wrote for J.Day with options:
-             - --filepath, --outpath, --name, --remove, --housekeepinggene, --labelsize, --axislabelsize, --figurewidth, --figureheight
+    - a script I wrote for J.Day with options:
+               - --filepath, --outpath, --name, --remove, --housekeepinggene, --labelsize, --axislabelsize, --figurewidth, --figureheight
      
 
 
