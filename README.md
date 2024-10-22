@@ -1,19 +1,13 @@
 # Tutorials
 
-A collection of code, scripts, and ymls to hopefully make your bioinformatic life a little simpler. 
+A collection of tutorials, code, scripts, and ymls to hopefully make your bioinformatic life a little simpler. 
 
 <br>
 <br>
-<br>
-<br>
-<br>
-
-
 
 # Table of Contents (in progress)
 - BASH_HOW_TO_use_variables_in_awk.md
   - If you want to use bash variables in your awk command (e.g. putting the filename or another variable in as a column)
-<br>
 - BASH_TIPS.md
   - How to clean up bash variables
   - Making shortcuts in ~/.bash_profile
