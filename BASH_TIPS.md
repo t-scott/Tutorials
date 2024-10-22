@@ -60,24 +60,39 @@ $ done
 <br>
 <br>
 <br>
-
+<br>
 
 # Consider making yourself some helpful shortcuts for bash
 If you find yourself typing the same thing over and over in the terminal, considering making yourself a shortcut by putting them in your ~/.bashprofile
 
 For example, I have a few such as:
 ```bash
+alias sq="squeue -u scottt7"
 alias mydir="cd /data/hodges_lab/Tim/"
 alias bfdir="cd /scratch/scottt7/Ferrell/"
 alias tim="cd /data/hodges_lab/Tim/"
 ```
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+# Screens
+## But why? 
+This is particularly useful if you have a job that is too long for a standard gateway, where you might be timed-out, but you don't necessarily need a large amount of time/resources. Some of these uses might be: 
+- Installing a conda package that you know will work, but it's taking a long time through the "solving specifications" portion of the process
+- Running a script that does not require a lot of CPU/memory power, but just takes longer than the gateway will allow
+
+
 
 <br>
 <br>
 <br>
 <br>
-
+<br>
 
 # Consider using Oh-My-Zsh to brighten up your terminal 
 This is a popular program/plug in for ZShell. Mac has moved from a simple bash shell for their default terminal to Zshell, which supports some cooler formatting and much more. I just use OhMyZsh for aesthetic reasons primarily and to view my directory path a little clearer. Essentially, you install it and it creates a file: ~/.zshrc (like a .bashrc) that holds a simple text file that controls a lot of settings. 
@@ -85,6 +100,19 @@ This is a popular program/plug in for ZShell. Mac has moved from a simple bash s
 - There's a large amount of plugins: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
   - There are plugins for bedtools and samtools to autocomplete all commands from those programs 
 - Good tutorial here for installation: https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156/
+- There are many prebuilt themes that have been designed over the years.
+  - Here's a good list of popular ones from their website: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+  - I use "agnoster." My terminal looks like this:
 
+![alt_text](https://github.com/t-scott/Tutorials/blob/main/tutorial_imgs/Screenshot_my_terminal.png)
 
+- I like the prompt line, as it:
+  - tracks the directory path (no *pwd* necessary)
+  - tracks the conda environment you're in
+  - tracks the user (may not be super useful for us)
+  - tracks the github branch you're in (if you're into that)
+  - others will also show you if the previous command completed or not (will show an "X")
+- The options for the propt line are numerous. This gif shows some of the options and variability:
+![alt_text](https://raw.githubusercontent.com/apodkutin/agnoster-zsh-theme/customize-prompt/agnoster_customization.gif)
+ 
 
