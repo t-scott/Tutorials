@@ -15,7 +15,8 @@ module save <collection_name>
 # For example, for Anaconda, I use:
 module save conda31
 ```
-This way, I can also tell Jupyter Notebook to use a custom module and I just have to remember "conda31"
+This way, I can also tell Jupyter Notebook to use a custom module and I just have to remember "conda31."
+
 You can check what modules you have saved with:
 ```bash
 module savelist
