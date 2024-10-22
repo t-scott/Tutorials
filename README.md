@@ -76,8 +76,14 @@ Main issue:
 Solution:
 - Only use the user-generated conda-forge and bioconda repositories (users maintain common, popular packages over on these repos, too)
 - Don't use defaults
-     - You can check what channels/repos your conda is set to look through when installing software, using "conda config --show channels"
-     - Remove defaults from this list using "conda config --remove channels defaults"
+     - You can check what channels/repos your conda is set to look through when installing software, using
+```bash
+       "conda config --show channels"
+```
+    - Remove defaults from this list using 
+```bash
+     "conda config --remove channels defaults"
+```
            - For stubborn environments, you can also manually edit this .condarc file like a .bashrc (probably at the location: ~/.condarc) and remove it that way
 
 
