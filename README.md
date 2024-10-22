@@ -64,7 +64,9 @@ TL;DR:
 - Remove defaults from your conda config file channel list using "conda config --remove channels defaults"
 - Check your favorite environments for packages from sources outside of conda-forge or bioconda:
 
+```bash
            conda list -n my_env_name
+```
 
   If it's clear, you're good to go
 
@@ -80,16 +82,18 @@ Solution:
 ```bash
        "conda config --show channels"
 ```
-    - Remove defaults from this list using 
+- Remove defaults from this list using 
 ```bash
      "conda config --remove channels defaults"
 ```
-           - For stubborn environments, you can also manually edit this .condarc file like a .bashrc (probably at the location: ~/.condarc) and remove it that way
+- For stubborn environments, you can also manually edit this .condarc file like a .bashrc (probably at the location: ~/.condarc) and remove it that way
 
 
 Practical solution for current environments:
 - Check if your current favorite environments even violate the updated Anaconda Terms of Service. Check if your environment has any packages not from conda-forge or bioconda by using:
+```bash
    conda list -n my_env_name
+```
 - It should show the "channel" from which packages are sourced in the fourth column. If all your channels are from conda-forge or bioconda, then you're good to go. 
 - If not:
      - Delete packages if not needed
