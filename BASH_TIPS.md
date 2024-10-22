@@ -112,7 +112,7 @@ This is a popular program/plug in for ZShell. Mac has moved from a simple bash s
   - tracks the user (may not be super useful for us)
   - tracks the github branch you're in (if you're into that)
   - others will also show you if the previous command completed or not (will show an "X")
-- The options for the propt line are numerous. This gif shows some of the options and variability:
+- The options for the prompt line are numerous. This gif shows some of the options and variability:
 ![alt_text](https://raw.githubusercontent.com/apodkutin/agnoster-zsh-theme/customize-prompt/agnoster_customization.gif)
  
 
