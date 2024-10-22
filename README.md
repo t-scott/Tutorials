@@ -36,7 +36,7 @@ Practical solution for current environments:
      - Delete packages if not needed
      - Reinstall from a free channel source instead
      - Start a new notebook/conda environment, updated instructions here: 
-          - https://github.com/t-scott/Tutorials/blob/main/jupyter_notebook_ACCRE
+          - [https://github.com/t-scott/Tutorials/blob/main/jupyter_notebook_ACCRE](https://github.com/t-scott/Tutorials/blob/main/JUPYTER_HOW_TO_Make_a_jupyter_notebook_on_ACCRE.md)
      - Start a new notebook/conda environment from a yml. I have a basic one for python3.10.9 (with your basic do-all python libraries) with R4.4.1 (has tidyverse, ggplot2, data.table, etc.):
            - https://github.com/t-scott/Tutorials/blob/main/yml_files/jupyter_py3.10.9_r4.4.1.yml
            - conda create -f name_of_yml_file.yml # (change the .yml file name to the name you want to name your conda env)
