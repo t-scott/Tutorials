@@ -1,3 +1,37 @@
+# Consider creating lmod collections
+## Why?
+Because I don't like having to "module spider XYZ" and then figure out the lines to load the correct modules. This is simple, but has saved me at least 18 seconds over the years.
+
+## How to create a collection
+1. Load in collection
+```bash
+# For example, for Anaconda, I use:
+module load Anaconda3/2023.03-1
+```
+2. Save collection
+```bash
+# Save with the form:
+module save <collection_name>
+# For example, for Anaconda, I use:
+module save conda31
+```
+This way, I can also tell Jupyter Notebook to use a custom module and I just have to remember "conda31"
+You can check what modules you have saved with:
+```bash
+module savelist
+# You can also see what's in a collection with:
+module describe <collection_name>
+```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
 # How to clean up bash variables
 Say you have a list of files, and you'd like to use part of their file names in a process--perhaps to name the output files. 
 
