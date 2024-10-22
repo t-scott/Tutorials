@@ -3,7 +3,6 @@
 A collection of tutorials, code, scripts, and ymls to hopefully make your bioinformatic life a little simpler. 
 
 <br>
-<br>
 
 # Table of Contents (in progress)
 - BASH_HOW_TO_use_variables_in_awk.md
@@ -65,7 +64,7 @@ TL;DR:
 - Check your favorite environments for packages from sources outside of conda-forge or bioconda:
 
 ```bash
-           conda list -n my_env_name
+conda list -n my_env_name
 ```
 
   If it's clear, you're good to go
@@ -80,11 +79,11 @@ Solution:
 - Don't use defaults
      - You can check what channels/repos your conda is set to look through when installing software, using
 ```bash
-       "conda config --show channels"
+conda config --show channels
 ```
 - Remove defaults from this list using 
 ```bash
-     "conda config --remove channels defaults"
+conda config --remove channels defaults
 ```
 - For stubborn environments, you can also manually edit this .condarc file like a .bashrc (probably at the location: ~/.condarc) and remove it that way
 
@@ -92,7 +91,7 @@ Solution:
 Practical solution for current environments:
 - Check if your current favorite environments even violate the updated Anaconda Terms of Service. Check if your environment has any packages not from conda-forge or bioconda by using:
 ```bash
-   conda list -n my_env_name
+conda list -n my_env_name
 ```
 - It should show the "channel" from which packages are sourced in the fourth column. If all your channels are from conda-forge or bioconda, then you're good to go. 
 - If not:
