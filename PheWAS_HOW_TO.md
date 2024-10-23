@@ -6,6 +6,8 @@ These scripts and code have been developed and worked on by many people includin
 # Step 1: Get a BED file
 This BED file could be of HMRs, individual 1bp regions relating to SNP locations, or any other set of regions. 
 
+**NOTE**: PLINK wants a fourth column. It doesn't *really* matter what it is, but it just wants it. 
+
 For example, here's a BED file I used for running PheWAS across a clustered region around rs7976678: 
 
 ```bash
