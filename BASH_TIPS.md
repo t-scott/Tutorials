@@ -1,3 +1,10 @@
+# Consider putting your script name at the bottom of the script
+I tend to write scripts in SublimeText or Jupyter Notebook. To put a .slrm script on ACCRE, I tend to use *nano*. When you copy and paste the text, you end up at the bottom of the script, and when you close nano, it asks you to save and for a filename. That way, I can just copy/paste the script name from right there. The bottom of my .slrm scripts often look like: 
+```bash
+# filename: run_this_slrm_job.slrm
+```
+
+
 # Consider creating lmod collections
 ## Why?
 Because I don't like having to "module spider XYZ" and then figure out the lines to load the correct modules. This is simple, but has saved me at least 18 seconds over the years.
