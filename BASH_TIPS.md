@@ -48,6 +48,8 @@ module describe <collection_name>
 
 
 # How to clean up bash variables
+This is here because I don't like regex. I don't like it because I'm bad at it. 
+
 Say you have a list of files, and you'd like to use part of their file names in a process--perhaps to name the output files. 
 
 Here's a great tutorial written by Dennis Williamson on Stack Overflow:
