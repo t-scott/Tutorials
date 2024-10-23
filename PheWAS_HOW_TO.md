@@ -210,46 +210,36 @@ This is a .slrm job. I found you can run ~100 SNPs in ~7-8 hours. But, if ACCRE 
 ```bash
 #!/bin/bash
 #SBATCH --account=hodges_lab
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --nodes=2
 #SBATCH --time=24:00:00
 #SBATCH --mem=64G
-#SBATCH --output=/data/hodges_lab/Tim/jday/labwas/scripts/region_around_rs7976678_chr12_6531245_6544281_on_MEGA_imputed_MEGA.out
-#SBATCH --error=/data/hodges_lab/Tim/jday/labwas/scripts/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA.error
-#SBATCH --job-name=rs797region
-
-# REAL REGION AT 6531245	6544281 -- hg19
-
-# load modules 
-module load GCC/8.2.0 OpenMPI/3.1.4 R/3.6.0
+#SBATCH --output=/data/hodges_lab/Tim/jday/phewas/scripts/phewas.out
+#SBATCH --error=/data/hodges_lab/Tim/jday/phewas/scripts/phewas.error
+#SBATCH --job-name=jd_phewas
 
 # define filepaths
-LABS_DIR='/data/hodges_lab/anna/brain/labwas_table'
+PHE_DIR='/data/hodges_lab/anna/brain/phewas_table'
 COVAR_DIR='/data/hodges_lab/aganve/human_variants/biovu_mega'
-LABS_DIR2='/data/hodges_lab/aganve/human_variants/labwas'
+# CHECK
 SNPS_DIR='/data/hodges_lab/Tim/jday/labwas/SNP_bed'
+SNPS_DIR2='/data/hodges_lab/Tim/jday/phewas/rsID_header'
 
-for GROUP in brainclusters
-do
-    # create output directory for each cluster 
-    OUT_DIR=/data/hodges_lab/Tim/jday/labwas/output_region_around_rs7976678_chr12_6531245_6544281_on_MEGA_imputed_MEGA/
-    mkdir -p ${OUT_DIR}
+# create output directory for each cluster 
+OUT_DIR=/data/hodges_lab/Tim/jday/phewas/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed/
+mkdir -p ${OUT_DIR}
 
-    # start R-Script
-    Rscript --verbose --no-save /data/hodges_lab/anna/pipeline/labwas.R \
-    ${SNPS_DIR}/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA \
-    ${LABS_DIR}/20220115_Inverse_Normal_Medians_ageAdjusted_all_labs \
-    ${LABS_DIR2}/shortnames-longnames-categories \
-    ${COVAR_DIR}/EUs_ibd_check_passed_megaEX_labwas_ready_covs_gender_pcs \
-    ${SNPS_DIR}/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA.rsID_header \
-    ${OUT_DIR}
-done
+# activate environment
+source /home/lorenzas/miniforge3/bin/activate hodges_lab
 
+# start R-Script
+Rscript --verbose --no-save /data/hodges_lab/Tim/github_tutorials/phewas/phewas.R \
+${SNPS_DIR}/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA \
+${PHE_DIR}/medical_home_phecode_table_20230607_pull_2_distinct_dates_yes_exclusions_121023 \
+${COVAR_DIR}/EUs_ibd_check_passed_megaEX_labwas_ready_covs_gender_pcs \
+${SNPS_DIR2}/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA.subset.rsID_header \
+${OUT_DIR}
 
-echo "submitted."
-
-# /data/hodges_lab/Tim/jday/labwas/scripts/region_around_rs7976678_chr12_6531245_6544281_on_MEGA_imputed_MEGA.slrm
+# /data/hodges_lab/Tim/jday/phewas/scripts/run_phe.slrm
 ```
 
 <br>
