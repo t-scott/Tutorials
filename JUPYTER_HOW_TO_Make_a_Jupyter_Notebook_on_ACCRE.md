@@ -5,7 +5,7 @@
 - Instead of proceeding through these steps, you can make the same environment from the .yml file here:
   - https://github.com/t-scott/Tutorials/blob/main/yml_files/jupyter_py3.10.9_r4.4.1.yml
     or, on ACCRE at: 
-  - /data/hodges_lab/Tim/yml/jupyter_py3.10.9_r4.4.1.yml
+  - /data/hodges_lab/Tim/github_tutorials/yml/jupyter_py3.10.9_r4.4.1.yml
   - On ACCRE, through my testing, this can be made in ~7 minutes in a standard gateway
     - This has all the basic jupyter notebook, python, and R (including tidyverse) packages you would normally need
     - It's possible to add more to this for your purposes, but the intention was to provide a useful "default" environment for use on ACCRE with python, R, and jupyter notebooks
