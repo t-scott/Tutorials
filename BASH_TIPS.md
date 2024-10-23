@@ -149,7 +149,7 @@ This is particularly useful if you have a job that is too long for a standard ga
 This is a popular program/plug in for ZShell. Mac has moved from a simple bash shell for their default terminal to Zshell, which supports some cooler formatting and much more. I just use OhMyZsh for aesthetic reasons primarily and to view my directory path a little clearer. Essentially, you install it and it creates a file: ~/.zshrc (like a .bashrc) that holds a simple text file that controls a lot of settings. 
 - Main website here: https://ohmyz.sh/
 - There's a large amount of plugins: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
-  - There are plugins for bedtools and samtools to autocomplete all commands from those programs 
+  - There are plugins for bedtools and samtools to autocomplete all commands from those programs. There's even one for web_search for Googling.
 - Good tutorial here for installation: https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156/
 - There are many prebuilt themes that have been designed over the years.
   - Here's a good list of popular ones from their website: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
