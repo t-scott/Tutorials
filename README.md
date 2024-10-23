@@ -73,18 +73,6 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 - plot_qPCR.R_script_with_options.R
     - a script I wrote for J.Day with options:
                - --filepath, --outpath, --name, --remove, --housekeepinggene, --labelsize, --axislabelsize, --figurewidth, --figureheight
-     
-option_list = list(
-    make_option(c("-f", "--filepath"), type="character", default = "FPATH", help="input file path"),
-    make_option(c("-p", "--outpath"), type="character", default="/data/hodges_lab/", help="dir path for output files"),
-    make_option(c("-o", "--outname"), type="character", default="knownResults.pdf", help="name for output plot"),
-    make_option(c("-t", "--title"), type="character", default="HOMER Results", help="title for plot"),
-    make_option(c("-n", "--nrow"), type="integer", default=10, help="the amount of hits to show"),
-    make_option(c("-l", "--labelsize"), type="integer", default=12, help="size for label text"),
-    make_option(c("-a", "--axislabelsize"), type="integer", default=10, help="size for axis label text"),
-    make_option(c("-w", "--figurewidth"), type="integer", default=8, help="figure width"),
-    make_option(c("-e", "--figureheight"), type="integer", default=8, help="figure height"),
-    make_option(c("-c", "--colorpalette"), type="character", default="Blues", help="RColorBrewer palette name. Options for sequential: Blues, BuGn, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn, PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd")
 
 
 <br>
