@@ -11,6 +11,11 @@ conda activate /home/scottt7/.conda/envs/ldsc
 # Tested by Jessica, it *should* work
 ```
 
+## About the sumstat files
+- Alkes sumstats (which we have already downloaded) are not being freely distributed anymore, so refer to /data/hodges_lab/Tim/github_tutorials/ldsc/Alkes_sumstats/
+- There does exist a manifest from: https://alkesgroup.broadinstitute.org/sumstats_formatted/Description.xlsx
+	- This is also on ACCRE in: /data/hodges_lab/Tim/github_tutorials/ldsc/ 
+
 
 # The .slrm script
 The main input for this is just a BED file. 
