@@ -5,6 +5,7 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 <br>
 
 # Table of Contents (in progress)
+## Bash
 - BASH_HOW_TO_use_variables_in_awk.md
     - If you want to use bash variables in your awk command (e.g. putting the filename or another variable in as a column)
 - BASH_TIPS.md
@@ -13,6 +14,11 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
     - Making shortcuts in ~/.bash_profile
     - Screens
     - Consider using Oh-My-Zsh
+
+<br>
+<br>
+
+## Jupyter
 - JUPYTER_HOW_TO_Make_a_Jupyter_Notebook_on_ACCRE.md
     - Install a default env with Jupyter Notebook on ACCRE via .yml
       - Allows for Jupyter Notebooks with Python/R/bash kernels
@@ -26,6 +32,7 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 <br>
 <br>
 
+## R
 - R_HOW_TO_Graph_a_list_of_files.md
     - How to load files in from a filename pattern, ggplot them with appropriately named titles, and save them with appropriate outfile names            
 - R_HOW_TO_Load_in_a_list_of_files_and_do_processes_with_them.md
@@ -46,11 +53,6 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
     - a script I wrote for J.Day with options:
                - --filepath, --outpath, --name, --remove, --housekeepinggene, --labelsize, --axislabelsize, --figurewidth, --figureheight
      
-
-
-
-
-
 
 
 
