@@ -78,7 +78,9 @@ start=`date +%s`
 
 # define input variables
 SNPS_DIR=/data/hodges_lab/Tim/labwas/SNPs/ChronsGWAS_MEGAex
-MEGA_EU=/data/davis_lab/shared/genotype_data/biovu/processed/imputed/best_guess/MEGA/MEGA_recalled/20200518_biallelic_mega_recalled.chr1-22.grid.EU.filt1.r2corrected
+#MEGA_EU=/data/davis_lab/shared/genotype_data/biovu/processed/imputed/best_guess/MEGA/MEGA_recalled/20200518_biallelic_mega_recalled.chr1-22.grid.EU.filt1.r2corrected
+# Now MEGA_EU is in:
+MEGA_EU=/nobackup/hodges_lab/tim/phewas/MEGA_recalled/20200518_biallelic_mega_recalled.chr1-22.grid.EU.filt1.r2corrected
 GRIDS_TO_KEEP=/data/hodges_lab/aganve/human_variants/biovu_mega/EU_megaEX_passed_relatedness_fid_iids_only.txt
 TFBS_FILE=/data/hodges_lab/Tim/PLINK_testing/wgEncodeRegTfbsClusteredWithCellsV3.sorted.bed
 CPG_FILE=/data/davis_lab/tim/methylationHeatmap/snplists/SNPPrioritization_brain_km11seed100/Human_H1ESC.CpG_sites.bed
