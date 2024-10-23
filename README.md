@@ -45,6 +45,11 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
     - My basic starting ggplot *theme()* section
     - Checking your R random number generator method (re: *set.seed()*)
     - *mutate()* + *case_when()* to add new columns to a dataframe based on other columns
+
+<br>
+<br>
+
+# Other    
 - USEFUL_LINKS.md
     - RColorBrewer cheatsheet
     - UCSC FTP links (hg19/hg38)
