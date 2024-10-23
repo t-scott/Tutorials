@@ -207,6 +207,16 @@ You can actually just edit this .rsID_header.txt file to a subset and run the .b
 # Step 4: Run the PheWAS script
 This is a .slrm job. I found you can run ~100 SNPs in ~7-8 hours. But, if ACCRE is being weird, sometimes, you might need more time. Additionally, you can run this as a job array, if you have multiple sets to run (AKA, multiple .rsID_header.txt's). This is simpler if the multiple sets are also labeled in some way that they are 1-# (e.g. "cluster1", "cluster2", "cluster3", etc.). This is because the slrm array will label each job with a jobarray number in a sequence, so you can hijack that variable for easier coding. 
 
+You can also write a for loop for multiple files instead of an array if it's not too long: 
+```bash
+for SET in set1 set2 set3
+do
+	Rscript --verbose --no-save /data/hodges_lab/Tim/github_tutorials/phewas/phewas.R \
+	${SNPS_DIR}/${SET}_MEGA 
+	.....
+done
+```
+
 ```bash
 #!/bin/bash
 #SBATCH --account=hodges_lab
@@ -222,7 +232,7 @@ PHE_DIR='/data/hodges_lab/anna/brain/phewas_table'
 COVAR_DIR='/data/hodges_lab/aganve/human_variants/biovu_mega'
 # CHECK
 SNPS_DIR='/data/hodges_lab/Tim/jday/labwas/SNP_bed'
-SNPS_DIR2='/data/hodges_lab/Tim/jday/phewas/rsID_header'
+# SNPS_DIR2='/data/hodges_lab/Tim/jday/phewas/rsID_header' # I reused the labwas rsID_header here 
 
 # create output directory for each cluster 
 OUT_DIR=/data/hodges_lab/Tim/jday/phewas/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed/
@@ -236,7 +246,7 @@ Rscript --verbose --no-save /data/hodges_lab/Tim/github_tutorials/phewas/phewas.
 ${SNPS_DIR}/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA \
 ${PHE_DIR}/medical_home_phecode_table_20230607_pull_2_distinct_dates_yes_exclusions_121023 \
 ${COVAR_DIR}/EUs_ibd_check_passed_megaEX_labwas_ready_covs_gender_pcs \
-${SNPS_DIR2}/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA.subset.rsID_header \
+${SNPS_DIR}/region_around_rs7976678_chr12_6422679_6434399_on_MEGA_imputed_MEGA.subset.rsID_header \
 ${OUT_DIR}
 
 # /data/hodges_lab/Tim/jday/phewas/scripts/run_phe.slrm
