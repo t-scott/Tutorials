@@ -35,7 +35,7 @@ This script is supposed to simplify several steps and relies on a couple other s
   - Also, chromosomes X and Y become 23 and 24. We also filter out unmapped contigs by searching for an underscore, "_". 
 3. Use PLINK to filter out the super-large .bed/.bim/.fam MEGA files processed by the Davis Lab to just the SNPs we need so we can input those into the PheWAS script. The original MEGA files are huge, so you don't want to require that much memory to perform PheWAS on a subset. 
 
-I moved the Davis Lab files into: /nobackup/hodges_lab/tim/phewas/. They are extremely large, nearing 700GB. 
+I moved the Davis Lab files into: /nobackup/hodges_lab/tim/phewas/. They are extremely large, nearing 500GB. 
 
 ```bash
 mkdir /data/hodges_lab/Tim/jday/phewas/SNP_plink/ ### CHANGE ###
