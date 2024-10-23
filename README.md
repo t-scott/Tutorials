@@ -22,6 +22,10 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
     - How to create a new conda environment with packages from just conda-forge and bioconductor
 - JUPYTER_TIPS.md
     - How to resize plot outputs in your Notebook
+ 
+<br>
+<br>
+
 - R_HOW_TO_Graph_a_list_of_files.md
     - How to load files in from a filename pattern, ggplot them with appropriately named titles, and save them with appropriate outfile names            
 - R_HOW_TO_Load_in_a_list_of_files_and_do_processes_with_them.md
@@ -35,6 +39,7 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
     - Checking your R random number generator method (re: *set.seed()*)
     - *mutate()* + *case_when()* to add new columns to a dataframe based on other columns
 - USEFUL_LINKS.md
+    - RColorBrewer cheatsheet
     - UCSC FTP links (hg19/hg38)
     - KentUtils links for downloading binaries 
 - plot_qPCR.R_script_with_options.R
