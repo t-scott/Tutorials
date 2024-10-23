@@ -49,7 +49,7 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 <br>
 <br>
 
-# Other    
+## Other    
 - USEFUL_LINKS.md
     - RColorBrewer cheatsheet
     - UCSC FTP links (hg19/hg38)
