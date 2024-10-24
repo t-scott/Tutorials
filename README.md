@@ -49,6 +49,16 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 <br>
 <br>
 
+## Conda
+- CONDA_HOW_TO.md
+    - The main how to conda is summarized in the lower part of this READ_ME, or in the JUPYTER_HOW_TO_Make_a_Jupyter_Notebook_on_ACCRE.md page
+    - This includes some Rules of Thumb
+    - And how to share an environment in the lab
+
+
+<br> 
+<br>
+
 ## Other    
 - HOW_TO_convert_gene_IDs.md
     - A quick look at how to convert geneIDs in R and another potential method 
