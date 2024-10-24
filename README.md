@@ -50,6 +50,12 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 <br>
 
 ## Other    
+- HOW_TO_convert_gene_IDs.md
+    - A quick look at how to convert geneIDs in R and another potential method 
+- Hodges_Lab_Software_Recs.md
+    - Some ideas for a text editor and terminal     
+- GREAT_and_the_not_so_great.md
+    - Some warnings about GREAT usage 
 - PheWAS_HOW_TO.md
 - LabWAS_HOW_TO.md
 - LDSC_HOW_TO.md
@@ -85,7 +91,11 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
 
 # Quick notes on use of conda on ACCRE:
 Update on post-conda commercialization: 
