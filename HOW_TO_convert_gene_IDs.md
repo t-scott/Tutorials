@@ -1,5 +1,7 @@
 # Introduction
+This is a quick introduction to how we've been converting between geneIDs. Some programs prefer one over the other. And, sometimes, you have to work with one (e.g. ENSEMBL's ENSG designations), but you might want to plot/view another (e.g. HUGO's GENE SYMBOLS). 
 
+Note: You may experience a loss of gene IDs between conversions, as some consortiums have more genes labeled than others. 
 
 
 # bitr
