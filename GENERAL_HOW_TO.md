@@ -19,6 +19,7 @@ Within your /.../.../some_analysis/ directory, consider starting with a few "def
   - It also doesn't hurt to quickly open nano and create a quick READ_ME.txt style file to copy/paste in the website/source the data comes from. This should also ideally be in your Jupyter Notebook or some other documentation, but this way, it's right there with the data, and you don't need to hunt down another place to figure out where it came from. 
 - /data/
   - This one is fairly self explanatory. Keep your data here.
+  - You will probably have various subdirectories in here to separate types of data. Or "steps" of data along some analysis process. 
   - Another useful thing that I sometimes like to do is to put in an /intermediate_files/ folder here. Some analyses and development of scripts can produce lots and lots of files that you may not want to clutter up your final results. Often, you probably only care about the final results, so quarden off the intermediates if you need to refer back.  
 - /results/
   - This is a good one for storing your final results so they're easily accessible. 
