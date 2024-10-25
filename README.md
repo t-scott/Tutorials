@@ -60,6 +60,8 @@ A collection of tutorials, code, scripts, and ymls to hopefully make your bioinf
 <br>
 
 ## Other    
+- GENERAL_HOW_TO.md
+    - Organizing your directories 
 - HOW_TO_convert_gene_IDs.md
     - A quick look at how to convert geneIDs in R and another potential method 
 - Hodges_Lab_Software_Recs.md
