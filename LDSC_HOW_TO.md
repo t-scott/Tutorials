@@ -195,9 +195,8 @@ DIR_FREQ=${DIR_LDSC}1000G_Phase3_frq/
 
 # Make list of traits on which to run LDSC -h (partitioned heritability)
 # Code to do so, if you're in the directory w/ sumstats
-# ls | tr "\n" " "
-# a="^^^"
-# for i in $a; do fileName="${i%%.sumstats}"; echo $fileName; done | tr "\n" " "
+#
+# for i in *sumstats;do fileName="${i%%.sumstats}"; echo $fileName; done | tr "\n" " "
 
 # More LDSC-preformatted sumstat files can be found at the Neale Lab Heritability Browser: https://nealelab.github.io/UKBB_ldsc/downloads.html
 
