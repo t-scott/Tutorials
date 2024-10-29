@@ -243,5 +243,142 @@ done
 ```
 
 
+<br>
+<br>
+<br>
+
+# Plotting
+There are many ways to do this, but the idea is that for every input file, you should have an output directory. 
+
+In that directory, you should have a *.results and a *.log file per sumstats file analyzed. The idea is to loop through the *.results files efficiently, while maintaining identifiers for the traits (part of the *.result filename) and for the run (usually part of the output directory name, e.g. */outputResults_Cluster123/).
+
+The other idiosyncrasy is that since you probably ran your input file with the default comparative annotation, the results will have 98+1 rows. This comparative annotation file is needed, as the program will try to assign the heritability to input regions, so ideally the annotation files are covering most of the genome in a fair, non-super-overlapping manner. Anyways, you will probably want to only take out the last line of each results file.  
+
+I used to use bash to loop through files within an output directory, where for each file, I would pull out the trait/phenotype name and add it as a column to the last row of the results file (my input file results per trait). Then, I would combine all these last-rows into one results file for my input file, where each row represents results for one phenotype. Now, I just do this process in R: 
+
+## Load libraries
+
+```R
+library(tidyverse)
+library(ggplot2)
+library(data.table)
+library(ggrepel)
+```
+
+## Load files from directories
+This is designed for multiple runs, meaning multiple output directories each with numerous .result files. 
+
+Establish a list of directories to pull from:
+
+```R
+list_of_dirs <- c(
+    "/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/LDSC/outputResults_cluster11_stringent/",
+    "/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/LDSC/outputResults_cluster11_lenient/",
+    "/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/LDSC/outputResults_cluster_3/",
+    "/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/LDSC/outputResults_cluster_5/",
+    "/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/LDSC/outputResults_cluster_9/",
+    "/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/LDSC/outputResults_cluster_10/"
+)
+```
+
+Here's my script to: 
+- Go into a directory,
+- Get a list of all the .results files and their trait names,
+- Pull all the .results files from that directory, only loading in the last row, 
+- Putting them together into one dataframe, and
+- Adding another column reflecting the group name (pulled from filenames)
+
+Takes:
+- a directory
+
+Returns:
+- a dataframe of all results (last row) for all .results files in that directory
+
+```R
+load_LDSC_results_files <- function(path_var){
+    # Get filename and clean
+    lofn <- list.files(path_var, pattern="*results")
+    lofn_full <- map(lofn, ~paste0(path_var, .))
+    # Clean the list of filenaems
+    lofn_c_tmp <- map(lofn, ~sub("^[^.]*.", "", .))
+    lofn_c_tmp2 <- map(lofn_c_tmp, ~sub("highly_specific.", "", .))
+    lofn_c <- map(lofn_c_tmp2, ~sub(".results", "", .))
+    # Load .results files by name, rename list
+    cnames <- c("Category", "Prop._SNPs", "Prop._h2", "Prop._h2_std_error", "Enrichment", "Enrichment_std_error", "Enrichment_p", "Coefficient", "Coefficient_z-score")
+    lodf <- map(lofn_full, read_tsv, col_names=cnames, skip=98)
+    names(lodf) <- lofn_c
+    # Combine into DF, using naming of list to add a trait col 
+    df <- rbindlist(lodf, idcol="Trait")
+    # Add a column to know which folder it came from
+    # This is pulling from the filenames, before the first period (assuming files are like: "cluster123.ADHD.results", providing "cluster123")
+    group_name <- sub("\\..*", "", lofn[1])
+    df$Category <- group_name
+    # Return df
+    return(df)
+}
+```
+
+
+Load the files in using the list of directories and the function:
+
+```R
+list_of_results <- map(list_of_dirs, load_LDSC_results_files)
+
+# You can also make this into one large DF if you want:
+# res_df <- rbindlist(list_of_results)
+```
+
+## Plot
+
+Plotting function: 
+
+```R
+# Set juptyer notebook plot size, if applicable
+options(repr.plot.width = 8, repr.plot.height = 8)
+
+# Plotting function:
+plot_LDSC_volcanoesque <- function(res_df){
+    res_df %>% 
+    ggplot(aes(x = case_when(Enrichment<0 ~ -log10(abs(Enrichment)), 
+                         Enrichment>=0 ~ log10(Enrichment)), 
+            y=-log10(abs(Enrichment_p)), color = Trait)) +
+        geom_point(size=4) +
+                   #dplyr::case_when(res$enrichment_p > .05 ~ "#a6a6a6", 
+                                                  #res$enrichment_p <= .05 ~ "#d65168")) +
+        theme_bw() +
+        geom_hline(aes(yintercept = -log10(0.05/19), linetype="dashed", color = "red")) + 
+        geom_text_repel(aes(label=ifelse(Enrichment_p<.1 | abs(Enrichment>1), as.character(Trait),'')),
+                      size = 3, box.padding = .3, vjust=.5) + 
+        theme(aspect.ratio=1) +
+        ggtitle(res_df[1,]$Category)
+}
+
+# Plotting function + ggsave()
+plot_LDSC_volcanoesque_ggsave <- function(res_df){
+    p <- res_df %>% 
+    ggplot(aes(x = case_when(Enrichment<0 ~ -log10(abs(Enrichment)), 
+                         Enrichment>=0 ~ log10(Enrichment)), 
+            y=-log10(abs(Enrichment_p)), color = Trait)) +
+        geom_point(size=4) +
+                   #dplyr::case_when(res$enrichment_p > .05 ~ "#a6a6a6", 
+                                                  #res$enrichment_p <= .05 ~ "#d65168")) +
+        theme_bw() +
+        geom_hline(aes(yintercept = -log10(0.05/19), linetype="dashed", color = "red")) + 
+        geom_text_repel(aes(label=ifelse(Enrichment_p<.1 | abs(Enrichment>1), as.character(Trait),'')),
+                      size = 3, box.padding = .3, vjust=.5) + 
+        theme(aspect.ratio=1) +
+        ggtitle(res_df[1,]$Category)
+    SAVE_DIR="/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/LDSC_plots/"
+    NAME_SAVE=res_df[1,]$Category
+    ggsave(paste0(SAVE_DIR, NAME_SAVE, ".pdf"), p, height = 8, width = 8, dpi = 150)
+}
+```
+
+Apply the plotting function to the list_of_results:
+
+```R
+map(list_of_results, plot_LDSC_volcanoesque)
+```
+
 
 
