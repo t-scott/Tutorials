@@ -335,7 +335,26 @@ Plotting function:
 # Set juptyer notebook plot size, if applicable
 options(repr.plot.width = 8, repr.plot.height = 8)
 
-# Plotting function:
+# Plotting function - color by p-value <= 0.05
+plot_LDSC_volcanoesque_colorbypvalue <- function(res_df){
+    res_df %>% 
+    ggplot(aes(x = case_when(Enrichment<0 ~ -log10(abs(Enrichment)), 
+                         Enrichment>=0 ~ log10(Enrichment)), 
+            y=-log10(abs(Enrichment_p)), color = Trait)) +
+        geom_point(size = 4, color = dplyr::case_when(res_df$Enrichment_p > .05 ~ "#a6a6a6", 
+                                                      res_df$Enrichment_p <= .05 ~ "dodgerblue3")) +
+        theme_bw() +
+        geom_hline(aes(yintercept = -log10(0.05/19), linetype="dashed", color = "red")) + 
+        geom_text_repel(aes(label=ifelse(Enrichment_p<.1 | abs(Enrichment>1), as.character(Trait),'')),
+                      size = 3, box.padding = .3, vjust=.5) + 
+        theme(aspect.ratio=1) +
+        ggtitle(res_df[1,]$Category)
+}
+
+
+
+
+# Plotting function - color by Trait (If few traits):
 plot_LDSC_volcanoesque <- function(res_df){
     res_df %>% 
     ggplot(aes(x = case_when(Enrichment<0 ~ -log10(abs(Enrichment)), 
@@ -376,7 +395,9 @@ plot_LDSC_volcanoesque_ggsave <- function(res_df){
 Apply the plotting function to the list_of_results:
 
 ```R
-map(list_of_results, plot_LDSC_volcanoesque)
+map(list_of_results, plot_LDSC_volcanoesque_colorbypvalue)
+# or 
+# map(list_of_results, plot_LDSC_volcanoesque)
 ```
 
 
