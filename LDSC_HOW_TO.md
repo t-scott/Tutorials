@@ -49,8 +49,7 @@ This one hosts the reference files and python scripts needed:
 - **BIG NOTE**: This has to be different from COMP_NAME, or an error will appear.
   - I do not recall why, but somewhere deep deep in hundreds of lines of code, it becomes ambiguous
   - If the same, it will also overwrite the .annot file your input file in the annot step (Step 1), though the code could be adjusted to avoid this
-5. DIR_LDSChost - This is where your input files are coming from
-- It's currently set up to assume you have a subdirectory in this one called "/inputFiles/", but you can adjust the code
+5. IN_DIR - This is where your input files are coming from
 6. DIR_INTER - Where intermediate files go
 - This process creates a lot of stuff in between the start and the output, so it's nice to quarden them off
 - If this directory doesn't already exist, it'll make it for you
