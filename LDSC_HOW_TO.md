@@ -5,6 +5,7 @@ It comes with tutorials, but they are only several steps and make it seem easy. 
 
 I tried to simplify the process by refactoring the code so you only have to change a few variables at the top and then let it rip. 
 
+## About the conda environment
 From the GitHub, starting from scratch, it provides a conda environment environment.yml, but I have had trouble implementing this. I have a conda environment on ACCRE, and hopefully, you can just use that one. 
 ```bash
 conda activate /home/scottt7/.conda/envs/ldsc
@@ -12,6 +13,10 @@ conda activate /home/scottt7/.conda/envs/ldsc
 ```
 
 ## About the sumstat files
+- You can add your own sumstat files into a directory for analysis
+	- The Neale Lab has preformatted files specifically for LDSC that are browsable at: https://nealelab.github.io/UKBB_ldsc/downloads.html
+ 		- These have easy links for download
+   		- They just need to be added to a directory, and then have their file names added to the for loop in Step 3   
 - Alkes sumstats (which we have already downloaded) are not being freely distributed anymore, so refer to /data/hodges_lab/Tim/github_tutorials/ldsc/Alkes_sumstats/
 - There does exist a manifest from: https://alkesgroup.broadinstitute.org/sumstats_formatted/Description.xlsx
 	- This is also on ACCRE in: /data/hodges_lab/Tim/github_tutorials/ldsc/ 
@@ -38,10 +43,11 @@ This one hosts the reference files and python scripts needed:
   - Note: Put any new sumstats files you'd like to run in here and add the filename to the for loop in the script!
 2. COMP_NAME_PRE - added to the front of COMP_NAME - this can be editted out for simplicity
 - This was used to add a prefix to denote we were running clusters from a heatmap, so the output would be "Heatmap_info_" + ["cluster1", "cluster2", etc.] as we had multiple heatmaps. This added clarity to the outputs
-3. COMP_NAME - This is used for naming intermediate and output files
+3. COMP_NAME - This is a string used for naming intermediate and output files
 4. FILE_COLHEADER - This is used as the header in the .annot file, the first file produced
 - **BIG NOTE**: This has to be different from COMP_NAME, or an error will appear.
   - I do not recall why, but somewhere deep deep in hundreds of lines of code, it becomes ambiguous
+  - If the same, it will also overwrite the .annot file your input file in the annot step (Step 1), though the code could be adjusted to avoid this
 5. DIR_LDSChost - This is where your input files are coming from
 - It's currently set up to assume you have a subdirectory in this one called "/inputFiles/", but you can adjust the code
 6. DIR_INTER - Where intermediate files go
@@ -60,107 +66,104 @@ Other note about running: It currently assumes your filenames are something like
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=14:00:00
-#SBATCH --mem=32G
-#SBATCH --output=methHeatmap.%J.out
+#SBATCH --time=10:00:00
+#SBATCH --mem=64G
+#SBATCH --output=LDSC.%J.out
 
 
 # Store positional variable (input file, e.g. Input.1.bed)
 USER_INPUT_FILE=$1
-USER_INPUT_NAME="${USER_INPUT_FILE%%.*}" 
+USER_INPUT_FILENAME=${USER_INPUT_FILE%%.*} #### CHECK - this is currently trimming off everything after the first period. May need to alter.
 
-echo "Running the file:" $USER_INPUT_FILE
+echo "Running LDSC on the file:" $USER_INPUT_FILE
 
-# Get conda environment up and running
+# Load conda environment
 module restore conda
-# source activate ldsc
-# or hopefully:
-source activate /home/scottt7/.conda/envs/ldsc
+source activate ldsc 
 
 
-####### Set variables
 # LDSC Directory 
-DIR_LDSC=/data/hodges_lab/Tim/github_tutorials/ldsc/ ##### Check - previously /data/davis_lab/tim/LDSC_Base/
+# This is where the reference files and programs are 
+DIR_LDSC=/data/hodges_lab/Tim/github_tutorials/ldsc/ ##### CHECK
 # Go to LDSC folder where subdirectories for this project and .py programs are located 
 cd $DIR_LDSC
 
+
+####### Set variables
 # Comparison Name
-COMP_NAME_PRE="MethHeatmap_k9s112_" ##### Change #####
-COMP_NAME=${COMP_NAME_PRE}${USER_INPUT_NAME} ##### Change ##### | Will be used as a file header for intermediate/output files
+COMP_NAME_PRE=".testing_highly_specific" ##### CHANGE
+COMP_NAME=${USER_INPUT_FILENAME}${COMP_NAME_PRE} ##### CHANGE | Will be used as a file basename for intermediate/output files
 
-# Column header
-FILE_COLHEADER=${USER_INPUT_NAME} ##### Change ##### | Will be used in the annotation column of .annot files | THIS HAS TO BE DIFFERENT FROM COMP_NAME (IDKY)
 
-# Directory List: INPUT DIR
-DIR_LDSChost=/data/hodges_lab/tim/LDSC_brain/ #### Change #### This is where your input files are 
-cd ${DIR_LDSChost}
-IN_DIR=${DIR_LDSChost}inputFiles/ ##### Check ########## CHANGED THE ROOT DIR FOR THIS - Made my own input dir here 
+# Files to include & their flanking500 files
+FILE_COLHEADER=${USER_INPUT_FILENAME} ##### CHANGE | Will be used in the annotation column of .annot files | Will also be the row name for your data in the .results file
+# THIS HAS TO BE DIFFERENT FROM COMP_NAME (or it will overwrite in annot section)
 
-# Directory List: INTERMEDIATE/OUTPUT DIR
-DIR_INTER=${DIR_LDSChost}intermediateFiles_methHeatmapk9s112_${USER_INPUT_NAME}/ ##### Change #####
+
+# Directory List: User Files
+IN_DIR=/data/hodges_lab/Tim/neuropsych_project/highly_specific_HMR_sets/ ##### CHECK 
+cd ${IN_DIR}
+
+# Commented code directly below for debugging/testing
+# DIR_INTER=/data/hodges_lab/Tim/github_tutorials/ldsc/testing_intermediate_files/
+# DIR_OUT=/data/hodges_lab/Tim/github_tutorials/ldsc/testing_output_files/
+DIR_INTER=${IN_DIR}/intermediateFiles_${USER_INPUT_FILENAME}/ ##### CHANGE - can set to wherever, really
 mkdir -p ${DIR_INTER}
 
-DIR_OUT=${DIR_LDSChost}outputResults_methHeatmapk9s112_${USER_INPUT_NAME}/ ##### Change #####
+DIR_OUT=${IN_DIR}/outputResults_${USER_INPUT_FILENAME}/ ##### CHANGE - can set to wherever, really
 mkdir -p ${DIR_OUT}
+
+
 
 ##########################################################
 ##  Everything past this should not need to be touched! ##
 ##########################################################
 
-# Directory List: Dependent Reference Files
+echo -e "-------------------------------- RUNNING STEP 1 --------------------------------"
+
+# Directory List: Dependent Reference Files for Step 1
 DIR_LDSCOREANNOT=${DIR_LDSC}1000G_Phase3_baselineLD_v2.2_ldscores/
 DIR_PLINK=${DIR_LDSC}1000G_EUR_Phase3_plink/ 
 
-
-
-
-
-echo -e "-----------------------------------------------------\n#\t\t\tRUNNING STEP 0 \n-----------------------------------------------------"
 
 # Go to LDSC folder where subdirectories for this project and .py programs are located 
 cd $DIR_LDSC
 
 # Make annotation file [baseline + 4 custom annotations]
-# Make a SNP-annotation column for each annotation, then paste these to the right side of the baseline.[CHR].annot file; rezip at the end 
+# Make a SNP-annotation column for each annotation, gunzip, then paste these to the right side of the baseline.[CHR].annot file; rezip at the end 
 # Per chromosome
 for CHR_NUM in {1..22}
 do
-	# Cl
-	python make_annot.py --bed-file ${IN_DIR}${USER_INPUT_FILE} --bimfile ${DIR_PLINK}1000G.EUR.QC.${CHR_NUM}.bim --annot-file ${DIR_INTER}${USER_INPUT_NAME}.${CHR_NUM}.annot.gz 
-	gunzip -f ${DIR_INTER}${USER_INPUT_NAME}.${CHR_NUM}.annot.gz
-	awk -v header1=${FILE_COLHEADER} 'BEGIN{print header1}{if (NR>1) print}' ${DIR_INTER}${USER_INPUT_NAME}.${CHR_NUM}.annot > ${DIR_INTER}temp9.txt
-	mv ${DIR_INTER}temp9.txt ${DIR_INTER}${USER_INPUT_NAME}.${CHR_NUM}.annot
+    # make_annot.py to annotate genome with input file
+    python make_annot.py --bed-file ${IN_DIR}${USER_INPUT_FILE} --bimfile ${DIR_PLINK}1000G.EUR.QC.${CHR_NUM}.bim --annot-file ${DIR_INTER}${USER_INPUT_FILENAME}.${CHR_NUM}.annot.gz 
+    # gunzip this file output from make_annot.py so we can edit it
+    gunzip -f ${DIR_INTER}${USER_INPUT_FILENAME}.${CHR_NUM}.annot.gz
+    # Reformat this "column"
+    awk -v header1=$FILE_COLHEADER 'BEGIN{print header1}{if (NR>1) print}' ${DIR_INTER}${USER_INPUT_FILENAME}.${CHR_NUM}.annot > ${DIR_INTER}${USER_INPUT_FILENAME}.${CHR_NUM}.annot
+    # Combine as the last column
+    # Uses Alkes reference file here 
+    paste ${DIR_LDSCOREANNOT}baselineLD.${CHR_NUM}.annot ${DIR_INTER}${USER_INPUT_FILENAME}.${CHR_NUM}.annot > ${DIR_INTER}${COMP_NAME}.${CHR_NUM}.annot
 
-	# Combine
-	# Uses Alkes reference file here 
-	paste ${DIR_LDSCOREANNOT}baselineLD.${CHR_NUM}.annot ${DIR_INTER}${USER_INPUT_NAME}.${CHR_NUM}.annot > ${DIR_INTER}${COMP_NAME}.${CHR_NUM}.annot
-
-	# Remove waste
-	rm ${DIR_INTER}temp*.txt
+    # Remove waste
+    #rm temp*.txt
 done
 
-# # Gzip the above file: The annotation matrix with our columns appended 
+# # Gzip the above files: The annotation matrix with our columns appended 
 gzip -f ${DIR_INTER}${COMP_NAME}.*.annot
 
-## for chr in {1..22}; do sbatch Test_step1_calculate_ldscore.sh $chr; done
 
 
 
 
-
-
-
-
- echo -e "-----------------------------------------------------\n#\t\t\tRUNNING STEP 1 \n-----------------------------------------------------"
+ echo -e "--------------------------------  RUNNING STEP 2 --------------------------------"
 
 ##########################################################
 ##  Everything past this should not need to be touched! ##
 ##########################################################
 
-# Directory List: Dependent Reference Files
+# Directory List: Dependent Reference Files for Step 2
 DIR_PLINK=${DIR_LDSC}1000G_EUR_Phase3_plink/ ### non-existent
 DIR_HAPMAPSNP=${DIR_LDSC}hapmap3_snps/
-
 
 
 # Go to directory where ldsc.py is hosted, or call on it with the direct path 
@@ -176,20 +179,17 @@ done
 
 
 
-
-
-
- echo -e "-----------------------------------------------------\n#\t\t\tRUNNING STEP 2 \n-----------------------------------------------------"
+ echo -e "-------------------------------- RUNNING STEP 3 --------------------------------"
 
 
 ##########################################################
 ##  Everything past this should not need to be touched! ##
 ##########################################################
 
-# Directory List: Dependent Reference Files
-# DIR_LDSC=/data/davis_lab/tim/LDSC_Base/ ##### Check
-DIR_SUMSTATS=/data/hodges_lab/Tim/LDSC_LG/Alkes_sumstats/
-DIR_SUBSTATS_PGC=/data/davis_lab/tim/sumstats/psychiatric/
+# Directory List: Dependent Reference Files for Step 3
+DIR_SUMSTATS_ALKES=${DIR_LDSC}Alkes_sumstats/
+DIR_SUMSTATS_NEALE=${DIR_LDSC}original_sumstats/
+DIR_SUBSTATS_PGC=${DIR_LDSC}psychiatric/
 DIR_WEIGHTS=${DIR_LDSC}weights_hm3_no_hla/
 DIR_FREQ=${DIR_LDSC}1000G_Phase3_frq/
 
@@ -199,20 +199,34 @@ DIR_FREQ=${DIR_LDSC}1000G_Phase3_frq/
 # a="^^^"
 # for i in $a; do fileName="${i%%.sumstats}"; echo $fileName; done | tr "\n" " "
 
-# cd $DIR_LDSC
+# More LDSC-preformatted sumstat files can be found at the Neale Lab Heritability Browser: https://nealelab.github.io/UKBB_ldsc/downloads.html
+
+# Should be here with our .pys, but just to be sure
+cd ${DIR_LDSC}
 
 for TRAIT_NAME in ADHD ALCH AN ANX ASD BIP CUD MDD OCD OUD PTSD SCZ TS
 do
-	python ldsc.py --h2 ${DIR_SUBSTATS_PGC}${TRAIT_NAME}.sumstats.gz --ref-ld-chr ${DIR_INTER}${COMP_NAME}. --w-ld-chr ${DIR_WEIGHTS}weights. --overlap-annot --print-coefficients --frqfile-chr ${DIR_FREQ}1000G.EUR.QC. --out ${DIR_OUT}${COMP_NAME}.${TRAIT_NAME}
+	python ldsc.py --h2 ${DIR_SUBSTATS_PGC}${TRAIT_NAME}.sumstats.gz --ref-ld-chr ${DIR_INTER}$COMP_NAME. --w-ld-chr ${DIR_WEIGHTS}weights. --overlap-annot --print-coefficients --frqfile-chr ${DIR_FREQ}1000G.EUR.QC. --out ${DIR_OUT}$COMP_NAME.${TRAIT_NAME}
 done
 
 
 for TRAIT_NAME in PASS_HDL PASS_Height1 PASS_Rheumatoid_Arthritis UKB_460K.blood_EOSINOPHIL_COUNT UKB_460K.body_WHRadjBMIz UKB_460K.other_MORNINGPERSON
 do
-	python ldsc.py --h2 ${DIR_SUMSTATS}${TRAIT_NAME}.sumstats --ref-ld-chr ${DIR_INTER}${COMP_NAME}. --w-ld-chr ${DIR_WEIGHTS}weights. --overlap-annot --print-coefficients --frqfile-chr ${DIR_FREQ}1000G.EUR.QC. --out ${DIR_OUT}${COMP_NAME}.${TRAIT_NAME}
+	python ldsc.py --h2 ${DIR_SUMSTATS_ALKES}${TRAIT_NAME}.sumstats --ref-ld-chr ${DIR_INTER}$COMP_NAME. --w-ld-chr ${DIR_WEIGHTS}weights. --overlap-annot --print-coefficients --frqfile-chr ${DIR_FREQ}1000G.EUR.QC. --out ${DIR_OUT}$COMP_NAME.${TRAIT_NAME}
 done
 
-## Filename: run_LDSC_on_heatmapClusters.slrm
+
+# List of all the sumstats currently downloaded: 
+
+# DIR_SUMSTATS_ALKES=${LDSCDir}Alkes_sumstats/
+# for traitName in PASS_AgeFirstBirth PASS_Anorexia PASS_Autism PASS_BMI1 PASS_Coronary_Artery_Disease PASS_Crohns_Disease PASS_DS PASS_Ever_Smoked PASS_HDL PASS_Height1 PASS_LDL PASS_NumberChildrenEverBorn PASS_Rheumatoid_Arthritis PASS_Schizophrenia PASS_Type_2_Diabetes PASS_Ulcerative_Colitis PASS_Years_of_Education2 UKB_460K.blood_EOSINOPHIL_COUNT UKB_460K.blood_PLATELET_COUNT UKB_460K.blood_RBC_DISTRIB_WIDTH UKB_460K.blood_RED_COUNT UKB_460K.blood_WHITE_COUNT UKB_460K.bmd_HEEL_TSCOREz UKB_460K.body_BALDING1 UKB_460K.body_BMIz UKB_460K.body_HEIGHTz UKB_460K.body_WHRadjBMIz UKB_460K.bp_SYSTOLICadjMEDz UKB_460K.cov_EDU_YEARS UKB_460K.cov_SMOKING_STATUS UKB_460K.disease_AID_SURE UKB_460K.disease_ALLERGY_ECZEMA_DIAGNOSED UKB_460K.disease_DERMATOLOGY UKB_460K.disease_HI_CHOL_SELF_REP UKB_460K.disease_HYPOTHYROIDISM_SELF_REP UKB_460K.disease_RESPIRATORY_ENT UKB_460K.disease_T2D UKB_460K.lung_FEV1FVCzSMOKE UKB_460K.lung_FVCzSMOKE UKB_460K.mental_NEUROTICISM UKB_460K.other_MORNINGPERSON UKB_460K.pigment_HAIR UKB_460K.pigment_SKIN UKB_460K.pigment_SUNBURN UKB_460K.pigment_TANNING UKB_460K.repro_MENARCHE_AGE UKB_460K.repro_MENOPAUSE_AGE
+
+# DIR_SUMSTATS_NEALE=${LDSCDir}original_sumstats/
+# for traitName in Albumin ALP ALT Angina_byDoctor Apolipoprotein_B AST Cadiomyopathy_andOther CardiacArrythm Cholesterol Coffee_type Congen_Heart_andGreatArteries Diseases_of_liver ECG_load ECG_phaseTime ECG Haematocrit_percentage HeartAttack_byDoctor HighBloodPressure_byDoctor I25_chronicIHD I9_Cardiomyopathy I9_IHD_wideDefinition ICD10_I42_Cardiomyopathy ICD10_I48_atrialFibrillationAndFlutter IGF1 Liver_chirrosis Lymphocyte_count Lymphoid_leukaemia LymphoidLeukemia Myeloid_leukaemia Myocardial_infarction Neutrophil_count PASS_Rheumatoid_Arthritis PASS_Ulcerative_Colitis Primary_lymphoid_neoplasms RheumatoidFactor Triglycerides
+
+
+## Filename: run_LDSC_sample_script.refactored.slrm
+
 ```
 
 ## Submitting files to the .slrm script
