@@ -33,6 +33,7 @@ This one hosts the reference files and python scripts needed:
 - tim_ldsc.yml - an attempt to share my conda environment 
 - make_annot.py - part of the first step to create annotation of the genome with your input BED file
 - ldsc.py - the main guy
+- ldscore - this is a subdirectory that holds a bunch of helper python files written by the LDSC authors.
 - 1000G_EUR_Phase3_plink files
 - 1000G_Phase3_baselineLD_v2.2_scores - you can find this hopefully on their GitHub, but it's already downloaded - may be updated in the future
 - 1000G_frq files
