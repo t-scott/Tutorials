@@ -8,7 +8,7 @@ I tried to simplify the process by refactoring the code so you only have to chan
 ## About the conda environment
 From the GitHub, starting from scratch, it provides a conda environment environment.yml, but I have had trouble implementing this. I have a conda environment on ACCRE, and hopefully, you can just use that one. 
 ```bash
-conda activate /home/scottt7/.conda/envs/ldsc
+source activate /home/scottt7/.conda/envs/ldsc
 # Tested by Jessica, it *should* work
 ```
 
