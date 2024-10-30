@@ -78,8 +78,10 @@ USER_INPUT_FILENAME=${USER_INPUT_FILE%%.*} #### CHECK - this is currently trimmi
 echo "Running LDSC on the file:" $USER_INPUT_FILE
 
 # Load conda environment
-module restore conda
-source activate ldsc 
+# module restore conda
+# source activate ldsc
+module spider Anaconda3/2023.03-1
+/home/scottt7/.conda/envs/ldsc
 
 
 # LDSC Directory 
